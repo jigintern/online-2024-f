@@ -19,7 +19,7 @@
         "semiColons": true,
         "singleQuote": true,
         "proseWrap": "preserve",
-        "include": ["src/"],
+        "include": ["./**/*.js"]
     }
 
 }
