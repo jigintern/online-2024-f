@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
     <title>ようこそ、jigインターンへ！</title>
-    <link rel="icon" href="data:image/x-icon;,">
+    <!-- <link rel="icon" href="data:image/x-icon;,">
     <style>
       * {
         box-sizing: border-box;
@@ -22,8 +22,21 @@
     <script type="module">
       const message = await fetch("/welcome-message")
       document.querySelector("body").innerHTML = `<h1>${await message.text()}</h1>`
-    </script>
+    </script> -->
   </head>
   <body>
+
+    <audio id="audio" controls>
+      <source src="wave_audio.mp3" type="audio/mp3">
+    </audio>
+
+    <button onclick="playAudio()">Audio</button>
+    <script>
+      function playAudio() {
+        var audio = document.getElementById("audio");
+        audio.play();
+      }
+    </script>
+
   </body>
 </html>
