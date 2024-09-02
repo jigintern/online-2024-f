@@ -25,3 +25,14 @@
 .beach2 {
     opacity: 0.5;
 }
+.gabage {
+    width: 10%;
+    opacity: 1.0;
+    position: absolute;
+}
+
+.wood {
+    width: 30%;
+    opacity: 1.0;
+    position: absolute;
+}
