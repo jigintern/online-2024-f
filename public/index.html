@@ -48,6 +48,15 @@
           image1.style.opacity = audio.volume;
         }
       }
+
+      function toggleInsectNet() {
+            var icon = document.querySelector(".tools0");
+            if (icon.classList.contains("insectNet-active")) {
+                icon.classList.remove("insectNet-active");
+            } else {
+                icon.classList.add("insectNet-active");
+            }
+        }
     </script>
     <!--海岸画像-->
     <div class="beach">
@@ -55,9 +64,14 @@
       <img src="assets/cleanbeach1_img.PNG" class="beach1">
       <img src="assets/cleanbeach2_img.PNG" class="beach2">
     </div>
+    <div>
       <img src="assets/PlasticBottle_blue.png" class="gabage" style="top:550px; left:10px;">
       <img src="assets/driftwood.png" class="wood" style="top:600px; left:100px;">
       <img src="assets/EmptyCan.png" class="gabage" style="top:550px; left:200px;">
-      <img src="assets/PlasticBottle_white.png" class="gabage" style="top:580px; left:300px;">
+      <img src="assets/PlasticBottle_white.png" class="gabage" style="top:580px; left:300px;">      
+    </div>
+    <div class="tools">
+        <img src="assets/InsectNet_icon.png" class="tools0" onclick="toggleInsectNet()">
+    </div>
   </body>
 </html>

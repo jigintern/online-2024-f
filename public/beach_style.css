@@ -36,3 +36,21 @@
     opacity: 1.0;
     position: absolute;
 }
+
+.tools {
+    position: absolute;
+    width: 50px;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.tools0 {
+    cursor: pointer;
+    transition: border 0.3s ease;
+}
+
+.insectNet-active {
+    border: 3px solid red;
+    border-radius: 50%;
+}
