@@ -1,5 +1,6 @@
 function toggleAudio() {
   var audio = document.getElementById("audio");
+  audio.volume = 0;
   if (audio.paused) {
     audio.play();
   } else {
@@ -36,8 +37,9 @@ const gabages = [
   "assets/PlasticBottle_white.png",
   "assets/EmptyCan.png"
 ]
+
 //ゴミをn個ランダム表示
-  const n = 5;
+  const n = 7;
   for(let i = 0; i < n; i++){
   //画像をランダムで選ぶ
   const gabageSrc = gabages[Math.floor(Math.random() * gabages.length)];
@@ -55,6 +57,7 @@ const gabages = [
   // 画像をクリックした際に削除するイベントリスナーを追加
   gabageElement.addEventListener('click', function() {
     this.remove();
+    volumeUp();
   });
   document.body.appendChild(gabageElement);
 }
@@ -77,7 +80,8 @@ for (let i = 0; i < m; i++) {
   // 画像をクリックした際に削除するイベントリスナーを追加
   driftwoodElement.addEventListener('click', function() {
     this.remove();
+    volumeUp();
   });
   document.body.appendChild(driftwoodElement);
-  
 }
+
