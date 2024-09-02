@@ -1,5 +1,5 @@
 function toggleAudio() {
-  var audio = document.getElementById("audio");
+  const audio = document.getElementById("audio");
   if (audio.paused) {
     audio.play();
   } else {
@@ -8,9 +8,9 @@ function toggleAudio() {
 }
 
 function volumeUp() {
-  var audio = document.getElementById("audio");
-  var image0 = document.querySelector(".beach0");
-  var image1 = document.querySelector(".beach1");
+  const audio = document.getElementById("audio");
+  const image0 = document.querySelector(".beach0");
+  const image1 = document.querySelector(".beach1");
   if (audio.volume < 1) {
     audio.volume += 0.1;
     image0.style.opacity = 1 - audio.volume;
@@ -19,13 +19,22 @@ function volumeUp() {
 }
 
 function volumeDown() {
-  var audio = document.getElementById("audio");
-  var image0 = document.querySelector(".beach0");
-  var image1 = document.querySelector(".beach1");
+  const audio = document.getElementById("audio");
+  const image0 = document.querySelector(".beach0");
+  const image1 = document.querySelector(".beach1");
   if (audio.volume > 0) {
     audio.volume -= 0.1;
     image0.style.opacity = 1 - audio.volume;
     image1.style.opacity = audio.volume;
+  }
+}
+
+function toggleInsectNet() {
+  const icon = document.querySelector(".tools0");
+  if (icon.classList.contains("insectNet-active")) {
+      icon.classList.remove("insectNet-active");
+  } else {
+      icon.classList.add("insectNet-active");
   }
 }
 
