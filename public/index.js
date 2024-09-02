@@ -29,12 +29,15 @@ function volumeDown() {
   }
 }
 
+//Switch position of insectNet
+let insectNetActive = false;
 function toggleInsectNet() {
+  insectNetActive = !insectNetActive;
   const icon = document.querySelector(".tools0");
-  if (icon.classList.contains("insectNet-active")) {
-      icon.classList.remove("insectNet-active");
+  if (insectNetActive) {
+    icon.classList.add("insectNet-active");
   } else {
-      icon.classList.add("insectNet-active");
+    icon.classList.remove("insectNet-active");
   }
 }
 
@@ -62,8 +65,11 @@ const gabages = [
   gabageElement.style.left = `${randomX}px`;
   gabageElement.style.top = `${randomY}px`;
   // 画像をクリックした際に削除するイベントリスナーを追加
+  // クリック時にInsectNet状態を確認して削除
   gabageElement.addEventListener('click', function() {
-    this.remove();
+    if (insectNetActive) {
+      this.remove();
+    }
   });
   document.body.appendChild(gabageElement);
 }
@@ -84,8 +90,11 @@ for (let i = 0; i < m; i++) {
   driftwoodElement.style.left = `${randomX}px`;
   driftwoodElement.style.top = `${randomY}px`;
   // 画像をクリックした際に削除するイベントリスナーを追加
+  // クリック時にInsectNet状態を確認して削除
   driftwoodElement.addEventListener('click', function() {
-    this.remove();
+    if (insectNetActive) {
+      this.remove();
+    }
   });
   document.body.appendChild(driftwoodElement);
   
