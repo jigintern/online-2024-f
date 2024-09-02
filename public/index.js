@@ -52,8 +52,13 @@ const gabages = [
   gabageElement.style.position = 'absolute';
   gabageElement.style.left = `${randomX}px`;
   gabageElement.style.top = `${randomY}px`;
+  // 画像をクリックした際に削除するイベントリスナーを追加
+  gabageElement.addEventListener('click', function() {
+    this.remove();
+  });
   document.body.appendChild(gabageElement);
 }
+
 //流木の表示
 const driftwoodSrc = "assets/driftwood.png";
 // Driftwoodをm個ランダム表示
@@ -69,5 +74,10 @@ for (let i = 0; i < m; i++) {
   driftwoodElement.style.position = 'absolute';
   driftwoodElement.style.left = `${randomX}px`;
   driftwoodElement.style.top = `${randomY}px`;
+  // 画像をクリックした際に削除するイベントリスナーを追加
+  driftwoodElement.addEventListener('click', function() {
+    this.remove();
+  });
   document.body.appendChild(driftwoodElement);
+  
 }
