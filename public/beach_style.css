@@ -38,19 +38,26 @@
 }
 
 .tools {
-    position: absolute;
-    width: 50px;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
+    position: fixed;
+    top: 10px;
+    left: 315px;
+    z-index: 10;
 }
 
 .tools0 {
+    width: 80px; 
+    height: 80px; 
     cursor: pointer;
     transition: border 0.3s ease;
 }
 
 .insectNet-active {
-    border: 3px solid red;
-    border-radius: 50%;
+    border: 3px solid rgb(0, 0, 0);
+}
+
+.audio {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 100;
 }
