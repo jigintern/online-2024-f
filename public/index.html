@@ -9,7 +9,7 @@
 
     <img src="assets/cleanbeach2_img.PNG">
     <img src="assets/cleanbeach1_img.PNG">
-    <img src="assets/dirtybeach_img.PNG">
+    <img id="dirtyBeach" src="assets/dirtybeach_img.PNG">
     
     <div>
       <audio id="audio" controls loop style="display: none;">
@@ -33,15 +33,19 @@
   
       function volumeUp() {
         var audio = document.getElementById("audio");
+        var image = document.getElementById("dirtyBeach");
         if (audio.volume < 1) {
           audio.volume += 0.1;
+          image.style.opacity = 1 - audio.volume;
         }
       }
   
       function volumeDown() {
         var audio = document.getElementById("audio");
+        var image = document.getElementById("dirtyBeach");
         if (audio.volume > 0) {
           audio.volume -= 0.1;
+          image.style.opacity = 1 - audio.volume;
         }
       }
     </script>
