@@ -29,19 +29,23 @@
   
       function volumeUp() {
         var audio = document.getElementById("audio");
-        var image = document.querySelector(".beach0");
+        var image0 = document.querySelector(".beach0");
+        var image1 = document.querySelector(".beach1");
         if (audio.volume < 1) {
           audio.volume += 0.1;
-          image.style.opacity = 1 - audio.volume;
+          image0.style.opacity = 1 - audio.volume;
+          image1.style.opacity = audio.volume;
         }
       }
   
       function volumeDown() {
         var audio = document.getElementById("audio");
-        var image = document.querySelector(".beach0");
+        var image0 = document.querySelector(".beach0");
+        var image1 = document.querySelector(".beach1");
         if (audio.volume > 0) {
           audio.volume -= 0.1;
-          image.style.opacity = 1 - audio.volume;
+          image0.style.opacity = 1 - audio.volume;
+          image1.style.opacity = audio.volume;
         }
       }
     </script>
