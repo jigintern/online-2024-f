@@ -44,9 +44,29 @@
       <img src="assets/cleanbeach1_img.PNG" class="beach1">
       <img src="assets/cleanbeach2_img.PNG" class="beach2">
     </div>
-      <img src="assets/PlasticBottle_blue.png" class="gabage" style="top:550px; left:10px;">
-      <img src="assets/driftwood.png" class="wood" style="top:600px; left:100px;">
-      <img src="assets/EmptyCan.png" class="gabage" style="top:550px; left:200px;">
-      <img src="assets/PlasticBottle_white.png" class="gabage" style="top:580px; left:300px;">
+      <img src="assets/PlasticBottle_blue.png" class="gabage" style="top:550px; left:10px;" onclick="gabage_click(event)">
+      <img src="assets/driftwood.png" class="wood" style="top:600px; left:100px;" onclick="gabage_click(event)">
+      <img src="assets/EmptyCan.png" class="gabage" style="top:550px; left:200px;" onclick="gabage_click(event)">
+      <img src="assets/PlasticBottle_white.png" class="gabage" style="top:580px; left:300px;" onclick="gabage_click(event)">
   </body>
+
+  <script>
+    function gabage_click(event){
+      var click_x = event.pageX-30;//画像切り取ったらたぶんずれる
+	    var click_y = event.pageY-30;//画像切り取ったらたぶんずれる
+      const InsectNetElement = document.createElement("img");
+      InsectNetElement.classList.add("InsectNet");
+      InsectNetElement.src="assets/InsectNet_catching.png";
+      InsectNetElement.style.position = 'absolute';
+      InsectNetElement.style.left = `${click_x}px`;
+      InsectNetElement.style.top = `${click_y}px`;
+      InsectNetElement.style.width=35+"%";
+      InsectNetElement.style.position="absolute";
+      document.body.appendChild(InsectNetElement);
+      setTimeout(function(){
+        InsectNetElement.remove();
+      },500);
+
+      }
+  </script>
 </html>
