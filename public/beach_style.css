@@ -2,7 +2,26 @@
     box-sizing: border-box;
 }
 
-#beach{
+.beach {
+    position: relative;
+}
+
+.beach img{
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 390px;
     height: 844px;
+}
+/*dirtybeach*/
+.beach0 {
+    opacity: 0.5; /* 透明度を少し下げることで下の画像が見える */
+}
+/*cleanbeach1*/
+.beach1 {
+    opacity: 0.5;
+}
+/*cleanbeach2*/
+.beach2 {
+    opacity: 0.5;
 }
