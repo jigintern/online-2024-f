@@ -3,41 +3,10 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
-    <title>ようこそ、jigインターンへ！</title>
     <link rel="stylesheet" href="beach_style.css" />
-    <!-- <link rel="icon" href="data:image/x-icon;,">
-    <style>
-      * {
-        box-sizing: border-box;
-        margin: 0;
-      }
-      html, body {
-        height: 100vh;
-        width: 100%;
-      }
-      body {
-        display: grid;
-        place-content: center;
-      }
-    </style>
-    <script type="module">
-      const message = await fetch("/welcome-message")
-      document.querySelector("body").innerHTML = `<h1>${await message.text()}</h1>`
-    </script> -->
+    <title>かいがん清爽</title>
   </head>
   <body>
-
-    <!-- <audio id="audio" controls>
-      <source src="assets\wave_audio.mp3" type="audio/mp3">
-    </audio>
-     -->
-    <!-- <button onclick="playAudio()">Audio</button>
-    <script>
-      function playAudio() {
-        var audio = document.getElementById("audio");
-        audio.play();
-      }
-    </script> -->
     <!--海岸画像-->
     <div class="beach">
       <img src="assets/dirtybeach_img.PNG" class="beach0">
@@ -48,25 +17,19 @@
       <img src="assets/driftwood.png" class="wood" style="top:600px; left:100px;" onclick="gabage_click(event)">
       <img src="assets/EmptyCan.png" class="gabage" style="top:550px; left:200px;" onclick="gabage_click(event)">
       <img src="assets/PlasticBottle_white.png" class="gabage" style="top:580px; left:300px;" onclick="gabage_click(event)">
+      <div class="tools">
+        <img src="assets/InsectNet_icon.png" class="tools0" onclick="toggleInsectNet()">
+      </div>
+      <div class="audio">
+        <audio id="audio" controls loop style="display: none;">
+          <source src="assets/wave_audio.mp3" type="audio/mp3">
+          Your browser does not support audio element.
+        </audio>
+      <button onclick="toggleAudio()">Audio</button>
+      <button id="buttonVolDown" onclick="volumeDown()">-</button>
+      <button id="buttonVolUp" onclick="volumeUp()">+</button>
+    </div>
   </body>
-
-  <script>
-    function gabage_click(event){
-      var click_x = event.pageX-30;//画像切り取ったらたぶんずれる
-	    var click_y = event.pageY-30;//画像切り取ったらたぶんずれる
-      const InsectNetElement = document.createElement("img");
-      InsectNetElement.classList.add("InsectNet");
-      InsectNetElement.src="assets/InsectNet_catching.png";
-      InsectNetElement.style.position = 'absolute';
-      InsectNetElement.style.left = `${click_x}px`;
-      InsectNetElement.style.top = `${click_y}px`;
-      InsectNetElement.style.width=35+"%";
-      InsectNetElement.style.position="absolute";
-      document.body.appendChild(InsectNetElement);
-      setTimeout(function(){
-        InsectNetElement.remove();
-      },500);
-
-      }
-  </script>
+  <script type="text/javascript" src="index.js"></script>
 </html>
+    <script type="text/javascript" src="index.js"></script>
