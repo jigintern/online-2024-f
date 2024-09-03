@@ -55,8 +55,9 @@ function toggleWaterGun() {
 }
 
 function updateToolIcons() {
-  const insectNetIcon = document.querySelector(".tools0");
-  const waterGunIcon = document.querySelector(".tools1");
+  const insectNetIcon = document.querySelector("img.insect-net");
+  // TODO: 水鉄砲の機能が実装できたらコメントアウトをやめる
+  // const waterGunIcon = document.querySelector("img.water-gun");
   
   if (insectNetActive) {
     insectNetIcon.classList.add("insectNet-active");
