@@ -37,6 +37,10 @@
     position: absolute;
 }
 
+.InsectNet{
+    z-index: 1;
+}
+
 .tools {
     position: fixed;
     top: 10px;
@@ -49,6 +53,7 @@
     height: 80px; 
     cursor: pointer;
     transition: border 0.2s ease;
+    background-color:rgb(255, 255, 255);
 }
 
 .insectNet-active {
