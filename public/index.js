@@ -126,7 +126,7 @@ for (let i = 0; i < m; i++) {
   // クリック時にwaterGunActive状態を確認して削除
   driftwoodElement.addEventListener('click', function() {
     if (waterGunActive) {
-      gabage_click(event);
+      driftwood_click(event);
       this.remove();
       volumeUp();
     }
@@ -150,4 +150,46 @@ function gabage_click(event){
   setTimeout(function(){
     InsectNetElement.remove();
   },500);
+}
+
+function driftwood_click(event) {
+  const canvas = document.getElementById("waterCanvas");
+  const ctx = canvas.getContext("2d");
+
+  const targetX = event.pageX;
+  const targetY = event.pageY;
+
+  canvas.width = globalThis.innerWidth;
+  canvas.height = globalThis.innerHeight;
+
+  const startX = canvas.width / 2;
+  const startY = canvas.height;
+  const duration = 300; 
+  const startTime = Date.now();
+
+  function drawWaterStream() {
+    const elapsedTime = Date.now() - startTime;
+    const progress = Math.min(elapsedTime / duration, 1);
+
+    const currentX = startX + (targetX - startX) * progress;
+    const currentY = startY + (targetY - startY) * progress;
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.beginPath();
+    ctx.moveTo(startX, startY);
+    ctx.lineTo(currentX, currentY);
+    ctx.strokeStyle = "rgba(0, 150, 255, 0.7)";
+    ctx.lineWidth = 5;
+    ctx.stroke();
+
+    if (progress < 1) {
+      requestAnimationFrame(drawWaterStream);
+    } else {
+      setTimeout(() => {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }, 100);
+    }
+  }
+
+  drawWaterStream();
 }
