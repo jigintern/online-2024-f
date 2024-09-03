@@ -90,9 +90,11 @@ const gabages = [
   gabageElement.src = gabageSrc;
   gabageElement.classList.add("gabage");
   //座標をランダムに生成
-  //画面の大きさに合わせて配置
-  const randomX = Math.floor(10 + Math.random()*350);
-  const randomY = Math.floor(550 + Math.random()*200);
+  //画面の大きさに合わせて縦6~9割あたりに配置
+  const windW = globalThis.innerWidth - 35;  //横幅を考慮
+  const windH = globalThis.innerHeight;
+  const randomX = Math.floor(windW - Math.random()*windW);
+  const randomY = Math.floor(0.6*windH + Math.random()*(windH*0.3));
   //表示
   gabageElement.style.position = 'absolute';
   gabageElement.style.left = `${randomX}px`;
@@ -118,8 +120,11 @@ for (let i = 0; i < m; i++) {
   driftwoodElement.src = driftwoodSrc;
   driftwoodElement.classList.add("wood");
   // 座標をランダムに生成
-  const randomX = Math.floor(10 + Math.random() * 250);
-  const randomY = Math.floor(550 + Math.random() * 200);
+  //画面の大きさに合わせて縦6~9.5割あたりに配置
+  const windW = globalThis.innerWidth - 95;  //横幅を考慮
+  const windH = globalThis.innerHeight;
+  const randomX = Math.floor(windW - Math.random()*windW);
+  const randomY = Math.floor(0.6*windH + Math.random()*(windH*0.35));
   // 表示
   driftwoodElement.style.position = 'absolute';
   driftwoodElement.style.left = `${randomX}px`;
