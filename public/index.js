@@ -13,11 +13,13 @@ globalThis.onload = function() {
   audio.play();
 };
 
-function volumeUp() {
+async function volumeUp() {
   const audio = document.getElementById("audio");
   const image0 = document.querySelector(".beach0");
   const image1 = document.querySelector(".beach1");
-  if(audio.paused) audio.play();
+  if(audio.paused){
+    await audio.play();
+  }
   if (audio.volume < 1) {
     audio.volume += 0.1;
     image0.style.opacity = 1 - audio.volume;
