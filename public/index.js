@@ -78,7 +78,10 @@ const gabages = [
   "assets/PlasticBottle_white.png",
   "assets/EmptyCan.png"
 ]
-
+//画面サイズ取得
+const windW = globalThis.innerWidth;
+const windH = globalThis.innerHeight;
+  
 //ゴミをn個ランダム表示
   const n = 7;
   for(let i = 0; i < n; i++){
@@ -88,9 +91,9 @@ const gabages = [
   gabageElement.src = gabageSrc;
   gabageElement.classList.add("gabage");
   //座標をランダムに生成
-  //画面の大きさに合わせて配置
-  const randomX = Math.floor(10 + Math.random()*350);
-  const randomY = Math.floor(550 + Math.random()*200);
+  //画面の大きさに合わせて縦6~9割あたりに配置
+  const randomX = Math.floor(windW - 35 - Math.random()*(windW-35));
+  const randomY = Math.floor(0.6*windH + Math.random()*(windH*0.3));
   //表示
   gabageElement.style.position = 'absolute';
   gabageElement.style.left = `${randomX}px`;
@@ -116,8 +119,9 @@ for (let i = 0; i < m; i++) {
   driftwoodElement.src = driftwoodSrc;
   driftwoodElement.classList.add("wood");
   // 座標をランダムに生成
-  const randomX = Math.floor(10 + Math.random() * 250);
-  const randomY = Math.floor(550 + Math.random() * 200);
+  //画面の大きさに合わせて縦6~9.5割あたりに配置
+  const randomX = Math.floor(windW - 95 - Math.random()*(windW-95));
+  const randomY = Math.floor(0.6*windH + Math.random()*(windH*0.35));
   // 表示
   driftwoodElement.style.position = 'absolute';
   driftwoodElement.style.left = `${randomX}px`;
