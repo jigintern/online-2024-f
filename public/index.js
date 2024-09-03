@@ -56,21 +56,18 @@ function toggleWaterGun() {
 
 function updateToolIcons() {
   const insectNetIcon = document.querySelector("img.insect-net");
-  // TODO: 水鉄砲の機能が実装できたらコメントアウトをやめる
-  // const waterGunIcon = document.querySelector("img.water-gun");
-
+  const waterGunIcon = document.querySelector("img.water-gun");
   if (insectNetActive) {
     insectNetIcon.classList.add("insectNet-active");
   } else {
     insectNetIcon.classList.remove("insectNet-active");
   }
-
-  // TODO: 水鉄砲の機能が実装できたらコメントアウトをやめる
-  // if (waterGunActive) {
-  //  waterGunIcon.classList.add("waterGun-active");
-  // } else {
-  //   waterGunIcon.classList.remove("waterGun-active");
-  // }
+  
+  if (waterGunActive) {
+   waterGunIcon.classList.add("waterGun-active");
+  } else {
+    waterGunIcon.classList.remove("waterGun-active");
+  }
 }
 
 //流木以外のゴミの配列
@@ -101,8 +98,8 @@ for (let i = 0; i < n; i++) {
   gabageElement.style.left = `${randomX}px`;
   gabageElement.style.top = `${randomY}px`;
   // 画像をクリックした際に削除するイベントリスナーを追加
-  // クリック時にInsectNetAction状態を確認して削除
-  gabageElement.addEventListener("click", function () {
+  // クリック時にinsectNetAction状態を確認して削除
+  gabageElement.addEventListener('click', function() {
     if (insectNetActive) {
       gabage_click(event);
       this.remove();
@@ -132,7 +129,7 @@ for (let i = 0; i < m; i++) {
   // クリック時にwaterGunActive状態を確認して削除
   driftwoodElement.addEventListener("click", function () {
     if (waterGunActive) {
-      gabage_click(event);
+      driftwood_click(event);
       this.remove();
       volumeUp();
     }
@@ -155,4 +152,50 @@ function gabage_click(event) {
   setTimeout(function () {
     InsectNetElement.remove();
   }, 500);
+}
+
+function driftwood_click(event) {
+  if (!waterGunActive) {
+    return;
+  }
+
+  const canvas = document.getElementById("waterCanvas");
+  const ctx = canvas.getContext("2d");
+
+  const targetX = event.clientX;
+  const targetY = event.clientY;  
+
+  canvas.width = globalThis.innerWidth;
+  canvas.height = globalThis.innerHeight;
+
+  const startX = canvas.width / 2;
+  const startY = canvas.height;
+  const duration = 300;
+  const startTime = Date.now();
+
+  function drawWaterStream() {
+    const elapsedTime = Date.now() - startTime;
+    const progress = Math.min(elapsedTime / duration, 1);
+
+    const currentX = startX + (targetX - startX) * progress;
+    const currentY = startY + (targetY - startY) * progress;
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.beginPath();
+    ctx.moveTo(startX, startY);
+    ctx.lineTo(currentX, currentY);
+    ctx.strokeStyle = "rgba(0, 150, 255, 0.7)";
+    ctx.lineWidth = 5;
+    ctx.stroke();
+
+    if (progress < 1) {
+      requestAnimationFrame(drawWaterStream);
+    } else {
+      setTimeout(() => {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }, 100);
+    }
+  }
+
+  drawWaterStream();
 }

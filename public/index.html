@@ -13,9 +13,11 @@
       <img src="assets/cleanbeach1.PNG" class="cleanbeach" />
     </div>
     <div class="tools">
-      <img src="assets/InsectNet_icon.png" class="insect-net" onclick="toggleInsectNet()" />
+        <img src="assets/InsectNet_icon.png" class="insect-net" onclick="toggleInsectNet()">
+        <img src="assets/waterGun.png" class="water-gun" onclick="toggleWaterGun()">
     </div>
-
+    <!-- 水鉄砲アニメーション -->
+    <canvas id="waterCanvas"></canvas>
     <div class="audio">
       <audio id="audio" controls loop style="display: none">
         <source src="assets/wave_audio.mp3" type="audio/mp3" />
@@ -25,7 +27,6 @@
       <button id="buttonVolDown" onclick="volumeDown()">-</button>
       <button id="buttonVolUp" onclick="volumeUp()">+</button> -->
     </div>
-
     <script type="text/javascript" src="index.js"></script>
   </body>
 </html>
