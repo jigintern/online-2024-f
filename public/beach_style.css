@@ -1,21 +1,31 @@
 * {
     box-sizing: border-box;
+    margin: 0;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    background-image: url("assets/dirtybeach.PNG"), url("assets/cleanbeach1.PNG");
+    background-position: center center;
+    background-size: cover;
 }
 
 .beach {
     position: relative;
     margin: 0px;
-    padding: 0px;
 }
 
 .beach img{
     position: absolute;
     margin: 0;
-    padding: 0px;
     top: 0;
     left: 0;
-    width: 390px;
-    height: 844px;
+    width: 100%;
+    height: 100%;
 }
 /*dirtybeach*/
 .beach0 {
