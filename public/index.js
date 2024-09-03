@@ -29,17 +29,36 @@ function volumeDown() {
   }
 }
 
-// positions of insectNet % waterGun
+// positions of insectNet and waterGun
 let insectNetActive = false;
 let waterGunActive = false;
+
 function toggleInsectNet() {
   waterGunActive = false;
   insectNetActive = !insectNetActive;
-  const icon = document.querySelector(".tools0");
+  updateToolIcons();
+}
+
+function toggleWaterGun() {
+  insectNetActive = false;
+  waterGunActive = !waterGunActive;
+  updateToolIcons();
+}
+
+function updateToolIcons() {
+  const insectNetIcon = document.querySelector(".tools0");
+  const waterGunIcon = document.querySelector(".tools1");
+  
   if (insectNetActive) {
-    icon.classList.add("insectNet-active");
+    insectNetIcon.classList.add("insectNet-active");
   } else {
-    icon.classList.remove("insectNet-active");
+    insectNetIcon.classList.remove("insectNet-active");
+  }
+  
+  if (waterGunActive) {
+    waterGunIcon.classList.add("waterGun-active");
+  } else {
+    waterGunIcon.classList.remove("waterGun-active");
   }
 }
 
@@ -99,5 +118,5 @@ for (let i = 0; i < m; i++) {
     }
   });
   document.body.appendChild(driftwoodElement);
-  
+
 }
