@@ -38,7 +38,7 @@ function volumeDown() {
   }
 }
 
-// positions of insectNet and waterGun
+//States for insectNet and waterGun
 let insectNetActive = false;
 let waterGunActive = false;
 
@@ -62,9 +62,9 @@ function updateToolIcons() {
   } else {
     insectNetIcon.classList.remove("insectNet-active");
   }
-  
+
   if (waterGunActive) {
-   waterGunIcon.classList.add("waterGun-active");
+    waterGunIcon.classList.add("waterGun-active");
   } else {
     waterGunIcon.classList.remove("waterGun-active");
   }
@@ -99,7 +99,7 @@ for (let i = 0; i < n; i++) {
   gabageElement.style.top = `${randomY}px`;
   // 画像をクリックした際に削除するイベントリスナーを追加
   // クリック時にinsectNetAction状態を確認して削除
-  gabageElement.addEventListener('click', function() {
+  gabageElement.addEventListener("click", function () {
     if (insectNetActive) {
       gabage_click(event);
       this.remove();
@@ -163,7 +163,7 @@ function driftwood_click(event) {
   const ctx = canvas.getContext("2d");
 
   const targetX = event.clientX;
-  const targetY = event.clientY;  
+  const targetY = event.clientY;
 
   canvas.width = globalThis.innerWidth;
   canvas.height = globalThis.innerHeight;
