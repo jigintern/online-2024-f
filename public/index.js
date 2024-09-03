@@ -63,6 +63,7 @@ const gabages = [
   gabageElement.style.top = `${randomY}px`;
   // 画像をクリックした際に削除するイベントリスナーを追加
   gabageElement.addEventListener('click', function() {
+    gabage_click(event);
     this.remove();
   });
   document.body.appendChild(gabageElement);
@@ -85,6 +86,7 @@ for (let i = 0; i < m; i++) {
   driftwoodElement.style.top = `${randomY}px`;
   // 画像をクリックした際に削除するイベントリスナーを追加
   driftwoodElement.addEventListener('click', function() {
+    gabage_click(event);
     this.remove();
   });
   document.body.appendChild(driftwoodElement);
