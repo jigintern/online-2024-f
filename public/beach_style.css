@@ -46,7 +46,7 @@ body {
   position: absolute;
 }
 
-.InsectNet{
+.InsectNet {
   z-index: 1;
   transition-duration: 500ms;
 }

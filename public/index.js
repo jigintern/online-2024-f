@@ -149,12 +149,12 @@ function gabage_click(event) {
   InsectNetElement.style.position = "absolute";
   InsectNetElement.style.left = `${click_x}px`;
   InsectNetElement.style.top = `${click_y}px`;
-  InsectNetElement.style.width="120px";
+  InsectNetElement.style.width = "120px";
   document.body.appendChild(InsectNetElement);
-  setTimeout(function(){
+  setTimeout(function () {
     InsectNetElement.style.transform = "rotate(-90deg)";
-  },100);
-  setTimeout(function(){
+  }, 100);
+  setTimeout(function () {
     InsectNetElement.remove();
   }, 500);
 }
