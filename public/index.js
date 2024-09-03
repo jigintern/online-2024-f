@@ -38,13 +38,39 @@ function volumeDown() {
   }
 }
 
+// positions of insectNet and waterGun
+let insectNetActive = false;
+let waterGunActive = false;
+
 function toggleInsectNet() {
-  const icon = document.querySelector(".tools0");
-  if (icon.classList.contains("insectNet-active")) {
-      icon.classList.remove("insectNet-active");
+  waterGunActive = false;
+  insectNetActive = !insectNetActive;
+  updateToolIcons();
+}
+
+function toggleWaterGun() {
+  insectNetActive = false;
+  waterGunActive = !waterGunActive;
+  updateToolIcons();
+}
+
+function updateToolIcons() {
+  const insectNetIcon = document.querySelector("img.insect-net");
+  // TODO: 水鉄砲の機能が実装できたらコメントアウトをやめる
+  // const waterGunIcon = document.querySelector("img.water-gun");
+  
+  if (insectNetActive) {
+    insectNetIcon.classList.add("insectNet-active");
   } else {
-      icon.classList.add("insectNet-active");
+    insectNetIcon.classList.remove("insectNet-active");
   }
+  
+  // TODO: 水鉄砲の機能が実装できたらコメントアウトをやめる
+  // if (waterGunActive) {
+  //  waterGunIcon.classList.add("waterGun-active");
+  // } else {
+  //   waterGunIcon.classList.remove("waterGun-active");
+  // }
 }
 
 //流木以外のゴミの配列
@@ -72,10 +98,13 @@ const gabages = [
   gabageElement.style.left = `${randomX}px`;
   gabageElement.style.top = `${randomY}px`;
   // 画像をクリックした際に削除するイベントリスナーを追加
+  // クリック時にInsectNetAction状態を確認して削除
   gabageElement.addEventListener('click', function() {
-    gabage_click(event);
-    this.remove();
-    volumeUp();
+    if (insectNetActive) {
+      gabage_click(event);
+      this.remove();
+      volumeUp();
+    }
   });
   document.body.appendChild(gabageElement);
 }
@@ -96,13 +125,16 @@ for (let i = 0; i < m; i++) {
   driftwoodElement.style.left = `${randomX}px`;
   driftwoodElement.style.top = `${randomY}px`;
   // 画像をクリックした際に削除するイベントリスナーを追加
+  // クリック時にwaterGunActive状態を確認して削除
   driftwoodElement.addEventListener('click', function() {
-    gabage_click(event);
-    this.remove();
-    volumeUp();
+    if (waterGunActive) {
+      gabage_click(event);
+      this.remove();
+      volumeUp();
+    }
   });
   document.body.appendChild(driftwoodElement);
-  
+
 }
 
 function gabage_click(event){
