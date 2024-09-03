@@ -29,9 +29,11 @@ function volumeDown() {
   }
 }
 
-//Switch position of insectNet
+// positions of insectNet % waterGun
 let insectNetActive = false;
+let waterGunActive = false;
 function toggleInsectNet() {
+  waterGunActive = false;
   insectNetActive = !insectNetActive;
   const icon = document.querySelector(".tools0");
   if (insectNetActive) {
@@ -90,9 +92,9 @@ for (let i = 0; i < m; i++) {
   driftwoodElement.style.left = `${randomX}px`;
   driftwoodElement.style.top = `${randomY}px`;
   // 画像をクリックした際に削除するイベントリスナーを追加
-  // クリック時にInsectNet状態を確認して削除
+  // クリック時にwaterGunActive状態を確認して削除
   driftwoodElement.addEventListener('click', function() {
-    if (insectNetActive) {
+    if (waterGunActive) {
       this.remove();
     }
   });
