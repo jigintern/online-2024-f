@@ -47,8 +47,8 @@ body {
 }
 
 .InsectNet{
-    z-index: 1;
-    transition-duration: 500ms;
+  z-index: 1;
+  transition-duration: 500ms;
 }
 
 .tools {
