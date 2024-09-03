@@ -86,7 +86,7 @@ const gabages = [
   gabageElement.style.left = `${randomX}px`;
   gabageElement.style.top = `${randomY}px`;
   // 画像をクリックした際に削除するイベントリスナーを追加
-  // クリック時にInsectNet状態を確認して削除
+  // クリック時にInsectNetAction状態を確認して削除
   gabageElement.addEventListener('click', function() {
     if (insectNetActive) {
       this.remove();
