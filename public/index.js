@@ -149,7 +149,7 @@ function gabage_click(event){
   InsectNetElement.style.width=120+"px";
   document.body.appendChild(InsectNetElement);
   setTimeout(function(){
-    InsectNetElement.style.transform = "rotate(" + -90 + "deg)";
+    InsectNetElement.style.transform = "rotate(-90deg)";
   },100);
   setTimeout(function(){
     InsectNetElement.remove();
