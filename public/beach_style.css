@@ -1,76 +1,77 @@
 * {
-    box-sizing: border-box;
-    margin: 0;
+  box-sizing: border-box;
+  margin: 0;
 }
 
-html, body {
-    width: 100%;
-    height: 100%;
+html,
+body {
+  width: 100%;
+  height: 100%;
 }
 
 .beach {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100svw;
-    height: 100svh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100svw;
+  height: 100svh;
 }
 
-.beach img{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: fill;
+.beach img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
 }
 /*dirtybeach*/
 .dirtybeach {
-    opacity: 1; /* 透明度を少し下げることで下の画像が見える */
+  opacity: 1; /* 透明度を少し下げることで下の画像が見える */
 }
 /*cleanbeach1*/
 .cleanbeach {
-    opacity: 0;
+  opacity: 0;
 }
 
 .gabage {
-    width: 30px;
-    opacity: 1.0;
-    position: absolute;
+  width: 30px;
+  opacity: 1;
+  position: absolute;
 }
 
 .wood {
-    width: 90px;
-    opacity: 1.0;
-    position: absolute;
+  width: 90px;
+  opacity: 1;
+  position: absolute;
 }
 
-.InsectNet{
-    z-index: 1;
+.InsectNet {
+  z-index: 1;
 }
 
 .tools {
-    position: fixed;
-    top: 10px;
-    left: 315px;
-    z-index: 10;
+  position: fixed;
+  top: 10px;
+  left: 315px;
+  z-index: 10;
 }
 
 .insect-net {
-    width: 80px; 
-    height: 80px; 
-    cursor: pointer;
-    transition: border 0.2s ease;
-    background-color:rgb(255, 255, 255);
+  width: 80px;
+  height: 80px;
+  cursor: pointer;
+  transition: border 0.2s ease;
+  background-color: rgb(255, 255, 255);
 }
 
 .insectNet-active {
-    border: 3px solid rgb(0, 0, 0);
+  border: 3px solid rgb(0, 0, 0);
 }
 
 .audio {
-    position: fixed;
-    top: 10px;
-    left: 10px;
-    z-index: 100;
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 100;
 }
