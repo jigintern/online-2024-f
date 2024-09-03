@@ -15,8 +15,8 @@ globalThis.onload = function() {
 
 async function volumeUp() {
   const audio = document.getElementById("audio");
-  const image0 = document.querySelector(".beach0");
-  const image1 = document.querySelector(".beach1");
+  const image0 = document.querySelector(".dirtybeach");
+  const image1 = document.querySelector(".cleanbeach");
   if(audio.paused){
     await audio.play();
   }
@@ -29,8 +29,8 @@ async function volumeUp() {
 
 function volumeDown() {
   const audio = document.getElementById("audio");
-  const image0 = document.querySelector(".beach0");
-  const image1 = document.querySelector(".beach1");
+  const image0 = document.querySelector(".dirtybeach");
+  const image1 = document.querySelector(".cleanbeach");
   if (audio.volume > 0) {
     audio.volume -= 0.1;
     image0.style.opacity = 1 - audio.volume;
@@ -88,7 +88,7 @@ const gabages = [
   gabageElement.src = gabageSrc;
   gabageElement.classList.add("gabage");
   //座標をランダムに生成
-  //X: 10px - 380px, Y: 550px - 750px
+  //画面の大きさに合わせて配置
   const randomX = Math.floor(10 + Math.random()*350);
   const randomY = Math.floor(550 + Math.random()*200);
   //表示
