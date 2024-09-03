@@ -37,6 +37,10 @@
     position: absolute;
 }
 
+.InsectNet{
+    z-index: 1;
+}
+
 .tools {
     position: fixed;
     top: 10px;

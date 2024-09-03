@@ -63,6 +63,7 @@ const gabages = [
   gabageElement.style.top = `${randomY}px`;
   // 画像をクリックした際に削除するイベントリスナーを追加
   gabageElement.addEventListener('click', function() {
+    gabage_click(event);
     this.remove();
   });
   document.body.appendChild(gabageElement);
@@ -85,8 +86,26 @@ for (let i = 0; i < m; i++) {
   driftwoodElement.style.top = `${randomY}px`;
   // 画像をクリックした際に削除するイベントリスナーを追加
   driftwoodElement.addEventListener('click', function() {
+    gabage_click(event);
     this.remove();
   });
   document.body.appendChild(driftwoodElement);
   
+}
+
+function gabage_click(event){
+  const click_x = event.pageX-30;//画像切り取ったらたぶんずれる
+  const click_y = event.pageY-30;//画像切り取ったらたぶんずれる
+  const InsectNetElement = document.createElement("img");
+  InsectNetElement.classList.add("InsectNet");
+  InsectNetElement.src="assets/InsectNet_catching.png";
+  InsectNetElement.style.position = 'absolute';
+  InsectNetElement.style.left = `${click_x}px`;
+  InsectNetElement.style.top = `${click_y}px`;
+  InsectNetElement.style.width=35+"%";
+  InsectNetElement.style.position="absolute";
+  document.body.appendChild(InsectNetElement);
+  setTimeout(function(){
+    InsectNetElement.remove();
+  },500);
 }
