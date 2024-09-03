@@ -7,10 +7,19 @@ function toggleAudio() {
   }
 }
 
-function volumeUp() {
+globalThis.onload = function() {
+  const audio = document.getElementById("audio");
+  audio.volume = 0;
+  audio.play();
+};
+
+async function volumeUp() {
   const audio = document.getElementById("audio");
   const image0 = document.querySelector(".beach0");
   const image1 = document.querySelector(".beach1");
+  if(audio.paused){
+    await audio.play();
+  }
   if (audio.volume < 1) {
     audio.volume += 0.1;
     image0.style.opacity = 1 - audio.volume;
@@ -69,8 +78,9 @@ const gabages = [
   "assets/PlasticBottle_white.png",
   "assets/EmptyCan.png"
 ]
+
 //ゴミをn個ランダム表示
-  const n = 5;
+  const n = 7;
   for(let i = 0; i < n; i++){
   //画像をランダムで選ぶ
   const gabageSrc = gabages[Math.floor(Math.random() * gabages.length)];
@@ -89,7 +99,9 @@ const gabages = [
   // クリック時にInsectNetAction状態を確認して削除
   gabageElement.addEventListener('click', function() {
     if (insectNetActive) {
+      gabage_click(event);
       this.remove();
+      volumeUp();
     }
   });
   document.body.appendChild(gabageElement);
@@ -114,7 +126,9 @@ for (let i = 0; i < m; i++) {
   // クリック時にwaterGunActive状態を確認して削除
   driftwoodElement.addEventListener('click', function() {
     if (waterGunActive) {
+      gabage_click(event);
       this.remove();
+      volumeUp();
     }
   });
   document.body.appendChild(driftwoodElement);
@@ -122,8 +136,8 @@ for (let i = 0; i < m; i++) {
 }
 
 function gabage_click(event){
-  const click_x = event.pageX-30;//画像切り取ったらたぶんずれる
-  const click_y = event.pageY-30;//画像切り取ったらたぶんずれる
+  const click_x = event.pageX-30;
+  const click_y = event.pageY-30;
   const InsectNetElement = document.createElement("img");
   InsectNetElement.classList.add("InsectNet");
   InsectNetElement.src="assets/InsectNet_catching.png";
