@@ -153,18 +153,22 @@ function gabage_click(event){
 }
 
 function driftwood_click(event) {
+  if (!waterGunActive) {
+    return;
+  }
+
   const canvas = document.getElementById("waterCanvas");
   const ctx = canvas.getContext("2d");
 
-  const targetX = event.pageX;
-  const targetY = event.pageY;
+  const targetX = event.clientX;
+  const targetY = event.clientY;  
 
   canvas.width = globalThis.innerWidth;
   canvas.height = globalThis.innerHeight;
 
   const startX = canvas.width / 2;
   const startY = canvas.height;
-  const duration = 300; 
+  const duration = 300;
   const startTime = Date.now();
 
   function drawWaterStream() {

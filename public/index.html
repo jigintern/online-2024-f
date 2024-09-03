@@ -7,6 +7,7 @@
     <title>かいがん清爽</title>
   </head>
   <body>
+    <canvas id="waterCanvas"></canvas>
     <!--海岸画像-->
     <div class="beach">
       <img src="assets/dirtybeach.PNG" class="dirtybeach">
@@ -15,9 +16,7 @@
     <div class="tools">
         <img src="assets/InsectNet_icon.png" class="insect-net" onclick="toggleInsectNet()">
         <img src="assets/WaterGun.png" class="water-gun" onclick="toggleWaterGun()">
-        <canvas id="waterCanvas"></canvas>
     </div>
-    
     <div class="audio">
       <audio id="audio" controls loop style="display: none;">
         <source src="assets/wave_audio.mp3" type="audio/mp3">
@@ -27,7 +26,6 @@
       <button id="buttonVolDown" onclick="volumeDown()">-</button>
       <button id="buttonVolUp" onclick="volumeUp()">+</button> -->
     </div>
-    
     <script type="text/javascript" src="index.js"></script>
   </body>
 </html>
