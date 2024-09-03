@@ -94,8 +94,8 @@ for (let i = 0; i < m; i++) {
 }
 
 function gabage_click(event){
-  const click_x = event.pageX-30;//画像切り取ったらたぶんずれる
-  const click_y = event.pageY-30;//画像切り取ったらたぶんずれる
+  const click_x = event.pageX-30;
+  const click_y = event.pageY-30;
   const InsectNetElement = document.createElement("img");
   InsectNetElement.classList.add("InsectNet");
   InsectNetElement.src="assets/InsectNet_catching.png";
