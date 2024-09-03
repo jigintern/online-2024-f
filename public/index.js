@@ -1,12 +1,17 @@
 function toggleAudio() {
   const audio = document.getElementById("audio");
-  audio.volume = 0;
   if (audio.paused) {
     audio.play();
   } else {
     audio.pause();
   }
 }
+
+globalThis.onload = function() {
+  const audio = document.getElementById("audio");
+  audio.volume = 0;
+  audio.play();
+};
 
 function volumeUp() {
   const audio = document.getElementById("audio");
