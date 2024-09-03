@@ -64,11 +64,12 @@ function updateToolIcons() {
     insectNetIcon.classList.remove("insectNet-active");
   }
   
-  if (waterGunActive) {
-    waterGunIcon.classList.add("waterGun-active");
-  } else {
-    waterGunIcon.classList.remove("waterGun-active");
-  }
+  // TODO: 水鉄砲の機能が実装できたらコメントアウトをやめる
+  // if (waterGunActive) {
+  //  waterGunIcon.classList.add("waterGun-active");
+  // } else {
+  //   waterGunIcon.classList.remove("waterGun-active");
+  // }
 }
 
 //流木以外のゴミの配列
