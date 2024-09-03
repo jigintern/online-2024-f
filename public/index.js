@@ -56,8 +56,7 @@ function toggleWaterGun() {
 
 function updateToolIcons() {
   const insectNetIcon = document.querySelector("img.insect-net");
-  // TODO: 水鉄砲の機能が実装できたらコメントアウトをやめる
-  // const waterGunIcon = document.querySelector("img.water-gun");
+  const waterGunIcon = document.querySelector("img.water-gun");
   
   if (insectNetActive) {
     insectNetIcon.classList.add("insectNet-active");
@@ -65,12 +64,11 @@ function updateToolIcons() {
     insectNetIcon.classList.remove("insectNet-active");
   }
   
-  // TODO: 水鉄砲の機能が実装できたらコメントアウトをやめる
-  // if (waterGunActive) {
-  //  waterGunIcon.classList.add("waterGun-active");
-  // } else {
-  //   waterGunIcon.classList.remove("waterGun-active");
-  // }
+  if (waterGunActive) {
+   waterGunIcon.classList.add("waterGun-active");
+  } else {
+    waterGunIcon.classList.remove("waterGun-active");
+  }
 }
 
 //流木以外のゴミの配列
@@ -98,7 +96,7 @@ const gabages = [
   gabageElement.style.left = `${randomX}px`;
   gabageElement.style.top = `${randomY}px`;
   // 画像をクリックした際に削除するイベントリスナーを追加
-  // クリック時にInsectNetAction状態を確認して削除
+  // クリック時にinsectNetAction状態を確認して削除
   gabageElement.addEventListener('click', function() {
     if (insectNetActive) {
       gabage_click(event);
