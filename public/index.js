@@ -150,6 +150,10 @@ function gabage_click(event){
   InsectNetElement.style.position="absolute";
   document.body.appendChild(InsectNetElement);
   setTimeout(function(){
+    
+    InsectNetElement.style.transform = "rotate(" + -90 + "deg)";
+  },100);
+  setTimeout(function(){
     InsectNetElement.remove();
   },500);
 }
