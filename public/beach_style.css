@@ -1,38 +1,49 @@
 * {
     box-sizing: border-box;
+    margin: 0;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
 }
 
 .beach {
-    position: relative;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100svw;
+    height: 100svh;
 }
 
 .beach img{
     position: absolute;
     top: 0;
     left: 0;
-    width: 390px;
-    height: 844px;
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
 }
 /*dirtybeach*/
-.beach0 {
+.dirtybeach {
     opacity: 1; /* 透明度を少し下げることで下の画像が見える */
 }
 /*cleanbeach1*/
-.beach1 {
+.cleanbeach {
     opacity: 0;
 }
-/*cleanbeach2*/
+/* cleanbeach2
 .beach2 {
     opacity: 0;
-}
+} */
 .gabage {
-    width: 10%;
+    width: 30px;
     opacity: 1.0;
     position: absolute;
 }
 
 .wood {
-    width: 30%;
+    width: 90px;
     opacity: 1.0;
     position: absolute;
 }
