@@ -91,7 +91,7 @@ for (let i = 0; i < n; i++) {
   gabageElement.classList.add("gabage");
   //座標をランダムに生成
   //画面の大きさに合わせて縦6~9割あたりに配置
-  const randomX = Math.floor(windW - 50 - Math.random() * (windW - 50));
+  const randomX = Math.floor(windW - 40 - Math.random() * (windW - 40));
   const randomY = Math.floor(0.6 * windH + Math.random() * (windH * 0.3));
   //表示
   gabageElement.style.position = "absolute";

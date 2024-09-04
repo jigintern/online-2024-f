@@ -110,6 +110,7 @@ body {
   font-weight: bold;
   color: #079a8e;
   position: relative;
+  white-space: nowrap;
 }
 
 .particletext.bubbles > .particle {
