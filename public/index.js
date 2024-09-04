@@ -205,4 +205,5 @@ function driftwood_click(event) {
   }
 
   drawWaterStream();
+  showSawayakaEffect(event.clientX, event.clientY);
 }
