@@ -10,7 +10,6 @@ function toggleAudio() {
 globalThis.onload = function () {
   const audio = document.getElementById("audio");
   audio.volume = 0;
-  audio.play();
 };
 
 async function volumeUp() {
@@ -91,7 +90,7 @@ for (let i = 0; i < n; i++) {
   gabageElement.classList.add("gabage");
   //座標をランダムに生成
   //画面の大きさに合わせて縦6~9割あたりに配置
-  const randomX = Math.floor(windW - 35 - Math.random() * (windW - 35));
+  const randomX = Math.floor(windW - 40 - Math.random() * (windW - 40));
   const randomY = Math.floor(0.6 * windH + Math.random() * (windH * 0.3));
   //表示
   gabageElement.style.position = "absolute";
@@ -137,6 +136,7 @@ for (let i = 0; i < m; i++) {
   document.body.appendChild(driftwoodElement);
 }
 
+//ゴミクリック時
 function gabage_click(event) {
   const click_x = event.pageX - 30;
   const click_y = event.pageY - 30;
@@ -154,41 +154,10 @@ function gabage_click(event) {
   setTimeout(function () {
     InsectNetElement.remove();
   }, 500);
+  showSawayakaEffect(click_x, click_y);
 }
 
-function bubbles() {
-  // すべての".particletext.bubbles"要素を取得
-  const elements = document.querySelectorAll(".particletext.bubbles");
-  elements.forEach(function (element) {
-    const bubblecount = (element.offsetWidth / 50) * 10;
-
-    // 0からbubblecountまでのループを実行
-    for (let i = 0; i <= bubblecount; i++) {
-      const size = Math.floor(Math.random() * 10 + 10);
-
-      // 新しいバブル(span)を作成
-      const bubble = document.createElement("span");
-      bubble.classList.add("particle");
-
-      // ランダムな位置とサイズ、アニメーションディレイを設定
-      const top = Math.floor(Math.random() * 30 + 30);
-      const left = Math.floor(Math.random() * 95);
-      const delay = Math.random() * 3;
-
-      // スタイルを適用
-      bubble.style.top = `${top}%`;
-      bubble.style.left = `${left}%`;
-      bubble.style.width = `${size}px`;
-      bubble.style.height = `${size}px`;
-      bubble.style.animationDelay = `${delay}s`;
-
-      // span要素を追加
-      element.appendChild(bubble);
-    }
-  });
-}
-
-bubbles();
+//流木クリック時
 function driftwood_click(event) {
   if (!waterGunActive) {
     return;
@@ -233,4 +202,5 @@ function driftwood_click(event) {
   }
 
   drawWaterStream();
+  showSawayakaEffect(event.clientX - 30, event.clientY);
 }
