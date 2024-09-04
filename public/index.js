@@ -153,6 +153,7 @@ function gabage_click(event) {
     InsectNetElement.remove();
   }, 500);
   showSawayakaEffect(click_x, click_y);
+  createCrab("60vh");
 }
 
 function driftwood_click(event) {

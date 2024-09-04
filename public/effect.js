@@ -47,3 +47,16 @@ function callSawayakasound() {
   audio.currentTime = 0;
   audio.play();
 }
+
+//カニをy座標指定して生成
+function createCrab(y) {
+  const crab = document.createElement("img");
+  crab.src = "assets/crab_img.png";
+  crab.classList.add("crab");
+  crab.style.top = y; //ここで出てくる場所を決める
+  document.body.appendChild(crab);
+  //移動時間が経過したら削除
+  setTimeout(() => {
+    crab.remove();
+  }, 10000);
+}
