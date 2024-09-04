@@ -37,7 +37,7 @@ function volumeDown() {
   }
 }
 
-// positions of insectNet and waterGun
+//States for insectNet and waterGun
 let insectNetActive = false;
 let waterGunActive = false;
 
@@ -129,8 +129,6 @@ for (let i = 0; i < m; i++) {
   driftwoodElement.addEventListener("click", function () {
     if (waterGunActive) {
       driftwood_click(event);
-      this.remove();
-      volumeUp();
     }
   });
   document.body.appendChild(driftwoodElement);
@@ -157,7 +155,6 @@ function gabage_click(event) {
   showSawayakaEffect(click_x, click_y);
 }
 
-//流木クリック時
 function driftwood_click(event) {
   if (!waterGunActive) {
     return;
@@ -174,33 +171,122 @@ function driftwood_click(event) {
 
   const startX = canvas.width / 2;
   const startY = canvas.height;
-  const duration = 300;
+  const duration = 500; // Animation Duration
   const startTime = Date.now();
 
   function drawWaterStream() {
     const elapsedTime = Date.now() - startTime;
     const progress = Math.min(elapsedTime / duration, 1);
 
-    const currentX = startX + (targetX - startX) * progress;
-    const currentY = startY + (targetY - startY) * progress;
+    // Shaking effect
+    const jitterX = (Math.random() - 0.5) * 10;
+    const jitterY = (Math.random() - 0.5) * 10;
+
+    const currentX = startX + (targetX - startX) * progress + jitterX;
+    const currentY = startY + (targetY - startY) * progress + jitterY;
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Gradient for the water stream
+    const gradient = ctx.createLinearGradient(startX, startY, currentX, currentY);
+    gradient.addColorStop(0, "rgba(0, 150, 255, 1)"); // Deep Blue
+    gradient.addColorStop(0.5, "rgba(0, 200, 255, 0.8)"); // Mid Blue
+    gradient.addColorStop(1, "rgba(0, 255, 255, 0.6)"); // Light Blue
+
     ctx.beginPath();
     ctx.moveTo(startX, startY);
     ctx.lineTo(currentX, currentY);
-    ctx.strokeStyle = "rgba(0, 150, 255, 0.7)";
-    ctx.lineWidth = 5;
+    ctx.strokeStyle = gradient;
+    ctx.lineWidth = 8;
     ctx.stroke();
+
+    // Draw speed lines along the water stream
+    drawSpeedLines(ctx, currentX, currentY, progress);
 
     if (progress < 1) {
       requestAnimationFrame(drawWaterStream);
     } else {
       setTimeout(() => {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        drawDynamicWaterSplash(ctx, targetX, targetY); // Water splash effect
+        event.target.remove(); // Remove driftwood element after the animation ends
+        volumeUp(); // Assuming this controls audio volume
+        showSawayakaEffect(event.clientX - 30, event.clientY);
       }, 100);
     }
   }
 
-  drawWaterStream();
-  showSawayakaEffect(event.clientX - 30, event.clientY);
+  function drawDynamicWaterSplash(ctx, x, y) {
+    const splashCount = 15;
+    const maxSplashSize = 8;
+    const splashRange = 60;
+    const splashDuration = 500;
+    const startTime = Date.now();
+
+    function animateSplash() {
+      const elapsedTime = Date.now() - startTime;
+      const progress = Math.min(elapsedTime / splashDuration, 1);
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      for (let i = 0; i < splashCount; i++) {
+        const splashX = x + (Math.random() - 0.5) * splashRange * progress;
+        const splashY = y + (Math.random() - 0.5) * splashRange * progress;
+        const splashSize = (Math.random() * maxSplashSize + 4) * (1 - progress);
+        const alpha = 1 - progress;
+
+        // Gradient for the splash droplet
+        const gradient = ctx.createRadialGradient(
+          splashX,
+          splashY,
+          0,
+          splashX,
+          splashY,
+          splashSize
+        );
+        gradient.addColorStop(0, `rgba(0, 150, 255, ${alpha})`); // Deep Blue
+        gradient.addColorStop(1, `rgba(0, 255, 255, ${alpha * 0.5})`); // Light Blue
+
+        // Draw droplet
+        ctx.beginPath();
+        ctx.arc(splashX, splashY, splashSize, 0, Math.PI * 2);
+        // ctx.fillStyle = `rgba(0, 150, 255, ${alpha})`;
+        ctx.fillStyle = gradient;
+        ctx.fill();
+      }
+
+      if (progress < 1) {
+        requestAnimationFrame(animateSplash);
+      }
+    }
+
+    animateSplash();
+  }
+
+  function drawSpeedLines(ctx, x, y, progress) {
+    const speedLineCount = 15;
+    const maxSpeedLineLength = 100;
+    const speedLineWidth = 4;
+
+    for (let i = 0; i < speedLineCount; i++) {
+      const offsetX = (Math.random() - 0.5) * maxSpeedLineLength;
+      const offsetY = (Math.random() - 0.5) * maxSpeedLineLength;
+
+      // Gradient for the speed line
+      const lineStartX = x - offsetX * progress;
+      const lineStartY = y - offsetY * progress;
+      const gradient = ctx.createLinearGradient(lineStartX, lineStartY, x, y);
+      gradient.addColorStop(0, "rgba(0, 150, 255, 1)"); // Deep Blue
+      gradient.addColorStop(1, "rgba(0, 255, 255, 0.5)"); // Light Blue
+
+      // Draw speed line
+      ctx.beginPath();
+      ctx.moveTo(x, y);
+      ctx.lineTo(lineStartX, lineStartY);
+      ctx.strokeStyle = gradient;
+      ctx.lineWidth = speedLineWidth;
+      ctx.stroke();
+    }
+  }
+
+  drawWaterStream(); // Start the water stream animation
 }
