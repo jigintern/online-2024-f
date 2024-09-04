@@ -30,7 +30,7 @@ function showSawayakaEffect(x, y) {
   sawayakaText.style.top = `${y}px`;
   document.body.appendChild(sawayakaText);
   //効果音呼び出し.
-  callSawayakasound(); 
+  callSawayakasound();
   //2秒間だけ表示
   setTimeout(function () {
     sawayakaText.remove();
@@ -44,6 +44,6 @@ function callSawayakasound() {
   audio.volume = 0.1;
   //ここの行で今の音の再生をなくしてもう一度音を出せるようにしている.
   audio.pause();
-  audio.currentTime = 0; 
+  audio.currentTime = 0;
   audio.play();
 }
