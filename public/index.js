@@ -215,22 +215,6 @@ function driftwood_click(event) {
     }
   }
 
-  function drawWaterSplash(ctx, x, y) {
-    const splashCount = 8;
-    const maxSplashSize = 4;
-    const splashRange = 20;
-
-    for (let i = 0; i < splashCount; i++) {
-      const splashX = x + (Math.random() - 0.5) * splashRange;
-      const splashY = y + (Math.random() - 0.5) * splashRange;
-      const splashSize = Math.random() * maxSplashSize + 4;
-      ctx.beginPath();
-      ctx.arc(splashX, splashY, splashSize, 0, Math.PI * 2);
-      ctx.fillStyle = "rgba(0, 150, 255, 0.7)";
-      ctx.fill();
-    }
-  }
-
   function drawDynamicWaterSplash(ctx, x, y) {
     const splashCount = 15;
     const maxSplashSize = 8;
