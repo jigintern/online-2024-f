@@ -255,7 +255,9 @@ function driftwood_click(event) {
       requestAnimationFrame(drawWaterStream);
     } else {
       setTimeout(() => {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        // ctx.clearRect(0, 0, canvas.width, canvas.height);
+        drawDynamicWaterSplash(ctx, targetX, targetY);
+
         // Remove driftwood element after the animation ends
         event.target.remove();
         volumeUp();
@@ -266,7 +268,7 @@ function driftwood_click(event) {
   function drawWaterSplash(ctx, x, y) {
     const splashCount = 8;
     const maxSplashSize = 4;
-    const splashRange = 30;
+    const splashRange = 20;
 
     for (let i = 0; i < splashCount; i++) {
       const splashX = x + (Math.random() - 0.5) * splashRange;
@@ -277,6 +279,44 @@ function driftwood_click(event) {
       ctx.fillStyle = "rgba(0, 150, 255, 0.7)";
       ctx.fill();
     }
+  }
+
+  function drawDynamicWaterSplash(ctx, x, y) {
+    const splashCount = 15; // Number of water droplets
+    const maxSplashSize = 8;
+    const splashRange = 60; // Wider splash range
+    const splashDuration = 500; // Duration of splash animation in ms
+    const startTime = Date.now();
+
+    function animateSplash() {
+      const elapsedTime = Date.now() - startTime;
+      const progress = Math.min(elapsedTime / splashDuration, 1); // Progress of the animation
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the previous frame
+
+      for (let i = 0; i < splashCount; i++) {
+        // Calculate the current position of the splash droplet
+        const splashX = x + (Math.random() - 0.5) * splashRange * progress; // Move the droplets outward
+        const splashY = y + (Math.random() - 0.5) * splashRange * progress;
+
+        // Calculate the current size and transparency of the splash droplet
+        const splashSize = (Math.random() * maxSplashSize + 4) * (1 - progress); // Size decreases over time
+        const alpha = 1 - progress; // Water droplets become transparent as progress increases
+
+        // Draw the droplet
+        ctx.beginPath();
+        ctx.arc(splashX, splashY, splashSize, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(0, 150, 255, ${alpha})`; // Transparency decreases
+        ctx.fill();
+      }
+
+      // Continue the animation until progress reaches 1
+      if (progress < 1) {
+        requestAnimationFrame(animateSplash);
+      }
+    }
+
+    animateSplash();
   }
 
   function drawSpeedLines(ctx, x, y, progress) {
