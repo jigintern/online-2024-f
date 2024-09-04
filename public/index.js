@@ -151,6 +151,7 @@ function gabage_click(event) {
   }, 100);
   setTimeout(function () {
     InsectNetElement.remove();
+    updateSawayakaGauge(); // Update gauge
   }, 500);
   showSawayakaEffect(click_x, click_y);
 }
@@ -211,6 +212,7 @@ function driftwood_click(event) {
         event.target.remove(); // Remove driftwood element after the animation ends
         volumeUp(); // Assuming this controls audio volume
         showSawayakaEffect(event.clientX - 30, event.clientY);
+        updateSawayakaGauge(); // Update gauge
       }, 100);
     }
   }
@@ -290,3 +292,43 @@ function driftwood_click(event) {
 
   drawWaterStream(); // Start the water stream animation
 }
+
+const canvas = document.getElementById("gaugeCanvas");
+const ctx = canvas.getContext("2d");
+const totalItems = m + n; // Total number of items(gabage + driftwood)
+let clearedItems = 0;
+
+// Draw gauge
+function drawGauge() {
+  const percentage = Math.min((clearedItems / totalItems) * 100, 100);
+  const width = canvas.width;
+  const height = canvas.height;
+
+  ctx.clearRect(0, 0, width, height);
+
+  ctx.fillStyle = "#d3d3d3"; // Grey
+  ctx.fillRect(0, 0, width, height);
+
+  const gradient = ctx.createLinearGradient(0, 0, width, 0);
+  gradient.addColorStop(0, "#00bfff");
+  gradient.addColorStop(1, "#7fffd4");
+  ctx.fillStyle = gradient;
+  ctx.fillRect(0, 0, (percentage / 100) * width, height);
+
+  ctx.fillStyle = "#000";
+  ctx.font = "20px Arial";
+  ctx.textAlign = "center";
+  ctx.fillText(`${Math.floor(percentage)}% 爽やか`, width / 2, height / 1.5);
+
+  // Update gauge percentage text
+  document.getElementById("gaugePercentage").textContent = `${Math.floor(percentage)}% 爽やか`;
+}
+
+// Update gauge
+function updateSawayakaGauge() {
+  clearedItems += 1;
+  drawGauge();
+}
+
+// Initial gauge
+drawGauge();
