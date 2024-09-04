@@ -101,14 +101,12 @@ body {
 
 .textcontainer {
   position: absolute;
-  top: 20%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   text-align: center;
+  display: none;
 }
 
 .particletext {
-  font-size: 8svw;
+  font-size: 20px;
   font-weight: bold;
   color: #079a8e;
   position: relative;
@@ -132,6 +130,6 @@ body {
   }
   100% {
     opacity: 0;
-    transform: translate(0, -1000%);
+    transform: translate(0, -300%);
   }
 }
