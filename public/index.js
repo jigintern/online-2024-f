@@ -91,7 +91,7 @@ for (let i = 0; i < n; i++) {
   gabageElement.classList.add("gabage");
   //座標をランダムに生成
   //画面の大きさに合わせて縦6~9割あたりに配置
-  const randomX = Math.floor(windW - 35 - Math.random() * (windW - 35));
+  const randomX = Math.floor(windW - 50 - Math.random() * (windW - 50));
   const randomY = Math.floor(0.6 * windH + Math.random() * (windH * 0.3));
   //表示
   gabageElement.style.position = "absolute";
@@ -205,5 +205,5 @@ function driftwood_click(event) {
   }
 
   drawWaterStream();
-  showSawayakaEffect(event.clientX, event.clientY);
+  showSawayakaEffect(event.clientX - 30, event.clientY);
 }

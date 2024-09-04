@@ -7,14 +7,14 @@ function bubbles() {
 
     // 0からbubblecountまでのループを実行
     for (let i = 0; i <= bubblecount; i++) {
-      const size = Math.floor(Math.random() * 10 + 10);
+      const size = Math.floor(Math.random() * 5 + 5);
 
       // 新しいバブル(span)を作成
       const bubble = document.createElement("span");
       bubble.classList.add("particle");
 
       // ランダムな位置とサイズ、アニメーションディレイを設定
-      const top = Math.floor(Math.random() * 30 + 30);
+      const top = Math.floor(Math.random() * 30 - 15);
       const left = Math.floor(Math.random() * 95);
       const delay = Math.random() * 3;
 
