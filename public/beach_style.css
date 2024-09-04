@@ -99,12 +99,6 @@ body {
   z-index: 200;
 }
 
-.textcontainer {
-  position: absolute;
-  text-align: center;
-  display: none;
-}
-
 .particletext {
   font-size: 20px;
   font-family: "Rounded M+", sans-serif;

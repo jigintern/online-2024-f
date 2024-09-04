@@ -10,7 +10,6 @@ function toggleAudio() {
 globalThis.onload = function () {
   const audio = document.getElementById("audio");
   audio.volume = 0;
-  audio.play();
 };
 
 async function volumeUp() {
@@ -104,7 +103,6 @@ for (let i = 0; i < n; i++) {
       gabage_click(event);
       this.remove();
       volumeUp();
-      showSawayakaEffect();
     }
   });
   document.body.appendChild(gabageElement);
@@ -133,7 +131,6 @@ for (let i = 0; i < m; i++) {
       driftwood_click(event);
       this.remove();
       volumeUp();
-      showSawayakaEffect();
     }
   });
   document.body.appendChild(driftwoodElement);
