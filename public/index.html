@@ -4,6 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta charset="utf-8" />
     <link rel="stylesheet" href="beach_style.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>かいがん清爽</title>
   </head>
   <body>
@@ -12,9 +13,12 @@
       <img src="assets/dirtybeach.PNG" class="dirtybeach" />
       <img src="assets/cleanbeach1.PNG" class="cleanbeach" />
     </div>
+    <div class="textcontainer">
+      <span class="particletext bubbles">爽やか！！</span>
+    </div>
     <div class="tools">
-        <img src="assets/InsectNet_icon.png" class="insect-net" onclick="toggleInsectNet()">
-        <img src="assets/waterGun.png" class="water-gun" onclick="toggleWaterGun()">
+      <img src="assets/InsectNet_icon.png" class="insect-net" onclick="toggleInsectNet()" />
+      <img src="assets/waterGun.png" class="water-gun" onclick="toggleWaterGun()" />
     </div>
     <!-- 水鉄砲アニメーション -->
     <canvas id="waterCanvas"></canvas>
