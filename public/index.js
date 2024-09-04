@@ -10,7 +10,6 @@ function toggleAudio() {
 globalThis.onload = function () {
   const audio = document.getElementById("audio");
   audio.volume = 0;
-  audio.play();
 };
 
 async function volumeUp() {
@@ -91,7 +90,7 @@ for (let i = 0; i < n; i++) {
   gabageElement.classList.add("gabage");
   //座標をランダムに生成
   //画面の大きさに合わせて縦6~9割あたりに配置
-  const randomX = Math.floor(windW - 35 - Math.random() * (windW - 35));
+  const randomX = Math.floor(windW - 40 - Math.random() * (windW - 40));
   const randomY = Math.floor(0.6 * windH + Math.random() * (windH * 0.3));
   //表示
   gabageElement.style.position = "absolute";
@@ -135,6 +134,7 @@ for (let i = 0; i < m; i++) {
   document.body.appendChild(driftwoodElement);
 }
 
+//ゴミクリック時
 function gabage_click(event) {
   const click_x = event.pageX - 30;
   const click_y = event.pageY - 30;
@@ -144,12 +144,15 @@ function gabage_click(event) {
   InsectNetElement.style.position = "absolute";
   InsectNetElement.style.left = `${click_x}px`;
   InsectNetElement.style.top = `${click_y}px`;
-  InsectNetElement.style.width = 35 + "%";
-  InsectNetElement.style.position = "absolute";
+  InsectNetElement.style.width = "120px";
   document.body.appendChild(InsectNetElement);
+  setTimeout(function () {
+    InsectNetElement.style.transform = "rotate(-90deg)";
+  }, 100);
   setTimeout(function () {
     InsectNetElement.remove();
   }, 500);
+  showSawayakaEffect(click_x, click_y);
 }
 
 function driftwood_click(event) {
@@ -207,6 +210,7 @@ function driftwood_click(event) {
         drawDynamicWaterSplash(ctx, targetX, targetY); // Water splash effect
         event.target.remove(); // Remove driftwood element after the animation ends
         volumeUp(); // Assuming this controls audio volume
+        showSawayakaEffect(event.clientX - 30, event.clientY);
       }, 100);
     }
   }
