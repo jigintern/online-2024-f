@@ -154,6 +154,52 @@ function gabage_click(event) {
   }, 500);
 }
 
+// function driftwood_click(event) {
+//   if (!waterGunActive) {
+//     return;
+//   }
+
+//   const canvas = document.getElementById("waterCanvas");
+//   const ctx = canvas.getContext("2d");
+
+//   const targetX = event.clientX;
+//   const targetY = event.clientY;
+
+//   canvas.width = globalThis.innerWidth;
+//   canvas.height = globalThis.innerHeight;
+
+//   const startX = canvas.width / 2;
+//   const startY = canvas.height;
+//   const duration = 300;
+//   const startTime = Date.now();
+
+//   function drawWaterStream() {
+//     const elapsedTime = Date.now() - startTime;
+//     const progress = Math.min(elapsedTime / duration, 1);
+
+//     const currentX = startX + (targetX - startX) * progress;
+//     const currentY = startY + (targetY - startY) * progress;
+
+//     ctx.clearRect(0, 0, canvas.width, canvas.height);
+//     ctx.beginPath();
+//     ctx.moveTo(startX, startY);
+//     ctx.lineTo(currentX, currentY);
+//     ctx.strokeStyle = "rgba(0, 150, 255, 0.7)";
+//     ctx.lineWidth = 5;
+//     ctx.stroke();
+
+//     if (progress < 1) {
+//       requestAnimationFrame(drawWaterStream);
+//     } else {
+//       setTimeout(() => {
+//         ctx.clearRect(0, 0, canvas.width, canvas.height);
+//       }, 100);
+//     }
+//   }
+
+//   drawWaterStream();
+// }
+
 function driftwood_click(event) {
   if (!waterGunActive) {
     return;
@@ -177,16 +223,33 @@ function driftwood_click(event) {
     const elapsedTime = Date.now() - startTime;
     const progress = Math.min(elapsedTime / duration, 1);
 
-    const currentX = startX + (targetX - startX) * progress;
-    const currentY = startY + (targetY - startY) * progress;
+    //Shaking effect
+    const jitterX = (Math.random() - 0.5) * 10;
+    const jitterY = (Math.random() - 0.5) * 10;
+
+    const currentX = startX + (targetX - startX) * progress + jitterX;
+    const currentY = startY + (targetY - startY) * progress + jitterY;
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    //Gradient
+    const gradient = ctx.createLinearGradient(startX, startY, currentX, currentY);
+    gradient.addColorStop(0, "rgba(0, 150, 255, 1)"); //Deep Blue
+    gradient.addColorStop(0.5, "rgba(0, 200, 255, 0.8)"); //Mid Blue
+    gradient.addColorStop(1, "rgba(0, 255, 255, 0.6)"); //Light Blue
+
     ctx.beginPath();
     ctx.moveTo(startX, startY);
     ctx.lineTo(currentX, currentY);
-    ctx.strokeStyle = "rgba(0, 150, 255, 0.7)";
-    ctx.lineWidth = 5;
+    ctx.strokeStyle = gradient;
+    ctx.lineWidth = 8;
     ctx.stroke();
+
+    //Draw water splash at the end of the stream
+    drawWaterSplash(ctx, currentX, currentY);
+
+    //Draw speed lines along the water stream
+    drawSpeedLines(ctx, currentX, currentY, progress);
 
     if (progress < 1) {
       requestAnimationFrame(drawWaterStream);
@@ -194,6 +257,39 @@ function driftwood_click(event) {
       setTimeout(() => {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
       }, 100);
+    }
+  }
+
+  function drawWaterSplash(ctx, x, y) {
+    const splashCount = 8;
+    const maxSplashSize = 4;
+    const splashRange = 30;
+
+    for (let i = 0; i < splashCount; i++) {
+      const splashX = x + (Math.random() - 0.5) * splashRange;
+      const splashY = y + (Math.random() - 0.5) * splashRange;
+      const splashSize = Math.random() * maxSplashSize + 4;
+      ctx.beginPath();
+      ctx.arc(splashX, splashY, splashSize, 0, Math.PI * 2);
+      ctx.fillStyle = "rgba(0, 150, 255, 0.7)";
+      ctx.fill();
+    }
+  }
+
+  function drawSpeedLines(ctx, x, y, progress) {
+    const speedLineCount = 15;
+    const maxSpeedLineLength = 100;
+    const speedLineWidth = 4;
+
+    for (let i = 0; i < speedLineCount; i++) {
+      const offsetX = (Math.random() - 0.5) * maxSpeedLineLength;
+      const offsetY = (Math.random() - 0.5) * maxSpeedLineLength;
+      ctx.beginPath();
+      ctx.moveTo(x, y);
+      ctx.lineTo(x - offsetX * progress, y - offsetY * progress);
+      ctx.strokeStyle = "rgba(0, 150, 255, 0.5)";
+      ctx.lineWidth = speedLineWidth;
+      ctx.stroke();
     }
   }
 
