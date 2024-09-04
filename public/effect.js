@@ -29,9 +29,21 @@ function showSawayakaEffect(x, y) {
   sawayakaText.style.left = `${x}px`;
   sawayakaText.style.top = `${y}px`;
   document.body.appendChild(sawayakaText);
+  //効果音呼び出し.
+  callSawayakasound(); 
   //2秒間だけ表示
   setTimeout(function () {
     sawayakaText.remove();
   }, 2000);
   bubbles(sawayakaText);
+}
+
+function callSawayakasound() {
+  //効果音の再生.
+  audio = document.getElementById("sawayakasound");
+  audio.volume = 0.1;
+  //ここの行で今の音の再生をなくしてもう一度音を出せるようにしている.
+  audio.pause();
+  audio.currentTime = 0; 
+  audio.play();
 }
