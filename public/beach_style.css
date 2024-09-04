@@ -48,13 +48,14 @@ body {
 
 .InsectNet {
   z-index: 1;
+  transition-duration: 500ms;
 }
 
 .tools {
-  position: fixed;
-  top: 10px;
-  left: 315px;
-  z-index: 10;
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 10;
 }
 
 .insect-net {
@@ -65,15 +66,37 @@ body {
   background-color: rgb(255, 255, 255);
 }
 
+.water-gun {
+    width: 80px; 
+    height: 80px; 
+    cursor: pointer;
+    transition: border 0.2s ease;
+    background-color:rgb(255, 255, 255);
+}
+
 .insectNet-active {
   border: 3px solid rgb(0, 0, 0);
 }
 
+.waterGun-active {
+    border: 3px solid rgb(0, 0, 0);
+}
+
 .audio {
-  position: fixed;
-  top: 10px;
-  left: 10px;
-  z-index: 100;
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 100;
+}
+
+#waterCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 200;
 }
 
 .textcontainer {
