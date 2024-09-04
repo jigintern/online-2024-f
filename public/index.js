@@ -130,8 +130,8 @@ for (let i = 0; i < m; i++) {
   driftwoodElement.addEventListener("click", function () {
     if (waterGunActive) {
       driftwood_click(event);
-      this.remove();
-      volumeUp();
+      // this.remove();
+      // volumeUp();
     }
   });
   document.body.appendChild(driftwoodElement);
@@ -216,7 +216,7 @@ function driftwood_click(event) {
 
   const startX = canvas.width / 2;
   const startY = canvas.height;
-  const duration = 300;
+  const duration = 500; //Animation Duration
   const startTime = Date.now();
 
   function drawWaterStream() {
@@ -256,6 +256,9 @@ function driftwood_click(event) {
     } else {
       setTimeout(() => {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
+        // Remove driftwood element after the animation ends
+        event.target.remove();
+        volumeUp();
       }, 100);
     }
   }
