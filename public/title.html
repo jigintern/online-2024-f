@@ -22,41 +22,49 @@
         <hr />
         <h2><br />ゲーム内容</h2>
         <p>海岸が汚れているのできれいに掃除しよう！<br /></p>
-        <img src="assets/説明画像サンプル.png" alt="散乱しているごみ" class="image_explain" />
+        <img src="assets/explain1.png" alt="散乱しているごみ" class="image_explain" />
         <p>ゲームを始めると、このように海岸がごみが散乱している状態になっています。</p>
         <p>プレイヤーが持っている虫取り網と水鉄砲を使ったらなんとかできるかも？<br /><br /></p>
         <hr />
         <h2><br />操作方法</h2>
         <h3>虫取り網と水鉄砲の使い方</h3>
-        <img src="assets/説明画像サンプル.png" alt="散乱しているごみ" class="image_explain" />
+        <img src="assets/explain2.png" alt="ツールの使い方" class="image_explain" />
         <p>画面の右上に虫取り網と水鉄砲のボタンがあります。使いたい方のボタンをタップして…</p>
         <br />
         <br />
 
-        <img src="assets/説明画像サンプル.png" alt="散乱しているごみ" class="image_explain" />
+        <img src="assets/explain3.png" alt="ごみをタップ" class="image_explain" />
         <p>そしてそのままごみをタップ！！！</p>
         <br />
         <br />
 
-        <img src="assets/説明画像サンプル.png" alt="散乱しているごみ" class="image_explain" />
+        <img src="assets/explain4.png" alt="消えたごみ" class="image_explain" />
         <p>ゴミを消すことができました。</p>
+        <p>そして上にあるゲージもゴミが減ると溜まります。maxにして爽快感を味わおう！！！</p>
         <br />
         <br />
 
-        <p>ちなみに少し重たそうなゴミには水鉄砲を使うとうまくいくらしいですよ？</p>
+        <p>ちなみに流木を処理するときだけは水鉄砲を使わないといけないので気を付けて！</p>
+        <br />
+        <br />
+        <span class="close">閉じる</span>
       </div>
     </div>
     <script>
-      var modal = document.getElementById("explainModal");
-      var btn = document.getElementById("howToPlay");
-      var span = document.getElementsByClassName("close")[0];
-
+      const modal = document.getElementById("explainModal");
+      const btn = document.getElementById("howToPlay");
+      const span1 = document.getElementsByClassName("close")[0];
+      const span2 = document.getElementsByClassName("close")[1];
+      span2.style = "border: solid 1px #000; background-color: rgb(159, 213, 255)";
       // ボタンをクリックするとモーダルを開く
       btn.onclick = function () {
         modal.style.display = "block";
       };
       // <span> (x) をクリックするとモーダルを閉じる
-      span.onclick = function () {
+      span1.onclick = function () {
+        modal.style.display = "none";
+      };
+      span2.onclick = function () {
         modal.style.display = "none";
       };
       // モーダルの外側をクリックすると閉じる

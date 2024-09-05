@@ -190,4 +190,5 @@ body {
 .image_explain {
   width: 100%;
   max-width: 375px;
+  border: solid 1px #000000;
 }
