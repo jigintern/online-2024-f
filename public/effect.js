@@ -64,7 +64,7 @@ function createCrab(y) {
 //イルカをx, y座標指定して生成
 function createDolphin(x, y) {
   const dolphin = document.createElement("img");
-  dolphin.src = "assets/dolphin_img.png";
+  dolphin.src = "assets/dolphin_img.PNG";
   dolphin.classList.add("dolphin");
   //ここで出てくる場所を決める
   dolphin.style.left = x;
