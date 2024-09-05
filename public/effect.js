@@ -51,7 +51,7 @@ function callSawayakasound() {
 //カニをy座標指定して生成
 function createCrab(y) {
   const crab = document.createElement("img");
-  crab.src = "assets/crab_img.png";
+  crab.src = "assets/crab_img.PNG";
   crab.classList.add("crab");
   crab.style.top = y; //ここで出てくる場所を決める
   document.body.appendChild(crab);
