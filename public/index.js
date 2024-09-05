@@ -325,5 +325,7 @@ function updateSawayakaGauge() {
   gaugePercentage.textContent = `${Math.floor(percentage)}% 爽やか`;
   if (percentage === 100) {
     showEnding();
+  } else {
+    deleteAnimals();
   }
 }
