@@ -8,6 +8,12 @@ Deno.serve(async (req) => {
     return new Response("jigインターンへようこそ！");
   }
 
+  if (req.method === "GET" && pathname === "/") {
+    return new Response(await Deno.readFile("public/title.html"), {
+      headers: { "Content-Type": "text/html" },
+    });
+  }
+
   return serveDir(req, {
     fsRoot: "public",
     urlRoot: "",
