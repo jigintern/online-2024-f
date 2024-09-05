@@ -4,6 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta charset="utf-8" />
     <link rel="stylesheet" href="beach_style.css" />
+    <link rel="stylesheet" href="animal_animation.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>かいがん清爽</title>
   </head>
@@ -13,11 +14,33 @@
       <img src="assets/dirtybeach.PNG" class="dirtybeach" />
       <img src="assets/cleanbeach1.PNG" class="cleanbeach" />
     </div>
-    <audio id="sawayakasound" type="audio/mp3" src="assets/キラッ2.mp3"></audio>
-    <div class="tools">
-      <img src="assets/InsectNet_icon.png" class="insect-net" onclick="toggleInsectNet()" />
-      <img src="assets/waterGun.png" class="water-gun" onclick="toggleWaterGun()" />
+    <div class="top-bar">
+      <!-- 爽やかゲージ -->
+      <div id="sawayakaGauge">
+        <div id="gaugeFill"></div>
+        <div id="gaugePercentage">0% 爽やか</div>
+      </div>
+      <div class="tools">
+        <!-- 虫取り網 -->
+        <img src="assets/InsectNet_icon.png" class="insect-net" onclick="toggleInsectNet()" />
+        <!-- 水鉄砲 -->
+        <img src="assets/waterGun.png" class="water-gun" onclick="toggleWaterGun()" />
+      </div>
     </div>
+    <div class="gauge-container">
+      <canvas id="gaugeCanvas" width="400" height="50"></canvas>
+    </div>
+    <div class="animals">
+      <img src="assets/crab_img.PNG" class="crab" />
+      <!--イルカ画像-->
+      <img src="assets/dolphin_img.PNG" class="dolphin" />
+      <!--クジラ画像-->
+      <div class="whaleSquirt">
+        <img src="assets/squirt_img.PNG" class="squirt" />
+        <img src="assets/whale_img.PNG" class="whale" />
+      </div>
+    </div>
+    <audio id="sawayakasound" type="audio/mp3" src="assets/キラッ2.mp3"></audio>
     <!-- 水鉄砲アニメーション -->
     <canvas id="waterCanvas"></canvas>
     <div class="audio">
