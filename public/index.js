@@ -317,6 +317,9 @@ function drawGauge() {
   ctx.fillText(`0% 爽やか`, width / 2, height / 1.5);
 }
 
+drawGauge();
+
+// Update gauge
 function updateSawayakaGauge() {
   clearedItems += 1;
   const percentage = Math.min((clearedItems / totalItems) * 100, 100);
@@ -329,5 +332,3 @@ function updateSawayakaGauge() {
   const gaugePercentage = document.getElementById("gaugePercentage");
   gaugePercentage.textContent = `${Math.floor(percentage)}% 爽やか`;
 }
-
-drawGauge();
