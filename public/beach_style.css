@@ -194,13 +194,6 @@ body {
   background: #fae9b8;
 }
 
-.animals {
-  height: 100%;
-  width: 100%;
-  overflow: hidden;
-  position: fixed;
-}
-
 .explainModal {
   display: none; /* デフォルトでは非表示 */
   position: fixed; /* 画面に固定 */
