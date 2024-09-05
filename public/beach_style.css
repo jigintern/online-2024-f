@@ -156,6 +156,7 @@ body {
 .insectNet-active,
 .waterGun-active {
   border: 3px solid rgb(0, 0, 0);
+}
 
 .background {
   width: 100%;
