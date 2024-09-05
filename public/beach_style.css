@@ -131,14 +131,12 @@ body {
 }
 
 .background {
-  background: linear-gradient(to bottom, #99ccff, #0059b3);
   width: 100%;
   height: 100%;
 }
 
 .titleBox {
   position: absolute;
-  padding: auto;
   width: 100%;
   top: 20%;
   left: 50%;
@@ -158,16 +156,8 @@ body {
   transform: translate(-50%, -50%);
 }
 
-.startButton {
-  padding: auto;
-  width: 100px;
-  height: 50px;
-  border-radius: 1000px;
-  background: #fae9b8;
-}
-
-.expreinButton {
-  padding: auto;
+.titleButton {
+  text-align: center;
   width: 100px;
   height: 50px;
   border-radius: 1000px;
