@@ -151,6 +151,7 @@ function gabage_click(event) {
   }, 100);
   setTimeout(function () {
     InsectNetElement.remove();
+    updateSawayakaGauge(); // Update gauge
   }, 500);
   showSawayakaEffect(click_x, click_y);
 }
@@ -211,6 +212,7 @@ function driftwood_click(event) {
         event.target.remove(); // Remove driftwood element after the animation ends
         volumeUp(); // Assuming this controls audio volume
         showSawayakaEffect(event.clientX - 30, event.clientY);
+        updateSawayakaGauge(); // Update gauge
       }, 100);
     }
   }
@@ -289,4 +291,36 @@ function driftwood_click(event) {
   }
 
   drawWaterStream(); // Start the water stream animation
+}
+
+const canvas = document.getElementById("gaugeCanvas");
+const ctx = canvas.getContext("2d");
+const totalItems = m + n; // Total number of items(gabage + driftwood)
+let clearedItems = 0;
+
+// Initial gauge
+function drawGauge() {
+  const canvas = document.getElementById("gaugeCanvas");
+  const ctx = canvas.getContext("2d");
+
+  const width = canvas.width;
+  const height = canvas.height;
+
+  ctx.clearRect(0, 0, width, height);
+}
+
+drawGauge();
+
+// Update gauge
+function updateSawayakaGauge() {
+  clearedItems += 1;
+  const percentage = Math.min((clearedItems / totalItems) * 100, 100);
+
+  console.log("Updated percentage:", percentage);
+
+  const gaugeFill = document.getElementById("gaugeFill");
+  gaugeFill.style.width = `${percentage}%`;
+
+  const gaugePercentage = document.getElementById("gaugePercentage");
+  gaugePercentage.textContent = `${Math.floor(percentage)}% 爽やか`;
 }
