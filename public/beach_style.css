@@ -7,14 +7,16 @@ html,
 body {
   width: 100%;
   height: 100%;
+  overflow: hidden;
 }
 
 .beach {
   position: absolute;
-  top: 70px;
+  top: 70px; /* Top bar */
   left: 0;
   width: 100svw;
   height: calc(100vh - 70px);
+  overflow: hidden;
 }
 
 .beach img {
