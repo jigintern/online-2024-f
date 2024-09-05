@@ -97,3 +97,10 @@ function showEnding() {
   createDolphin("15vw", "25vh");
   createWhaleSquirt();
 }
+
+function deleteAnimals() {
+  const animals = document.querySelectorAll(".animals img");
+  animals.forEach((animal) => {
+    animal.remove();
+  });
+}
