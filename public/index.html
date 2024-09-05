@@ -13,7 +13,17 @@
       <img src="assets/dirtybeach.PNG" class="dirtybeach" />
       <img src="assets/cleanbeach1.PNG" class="cleanbeach" />
     </div>
-    <div class="tools">
+    <div class="top-bar">
+      <div id="sawayakaGauge">
+        <div id="gaugeFill"></div>
+        <div id="gaugePercentage">0% 爽やか</div>
+      </div>
+      <div class="tools">
+        <img src="assets/InsectNet_icon.png" class="insect-net" onclick="toggleInsectNet()" />
+        <img src="assets/waterGun.png" class="water-gun" onclick="toggleWaterGun()" />
+      </div>
+    </div>
+    <!-- <div class="tools">
       <img src="assets/InsectNet_icon.png" class="insect-net" onclick="toggleInsectNet()" />
       <img src="assets/waterGun.png" class="water-gun" onclick="toggleWaterGun()" />
     </div>
@@ -21,6 +31,7 @@
     <div class="gauge-container">
       <canvas id="gaugeCanvas" width="400" height="50"></canvas>
     </div>
+    -->
     <!-- 水鉄砲アニメーション -->
     <canvas id="waterCanvas"></canvas>
     <div class="audio">

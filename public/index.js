@@ -319,16 +319,19 @@ function drawGauge() {
   ctx.font = "20px Arial";
   ctx.textAlign = "center";
   ctx.fillText(`${Math.floor(percentage)}% 爽やか`, width / 2, height / 1.5);
-
-  // Update gauge percentage text
-  document.getElementById("gaugePercentage").textContent = `${Math.floor(percentage)}% 爽やか`;
 }
 
-// Update gauge
 function updateSawayakaGauge() {
   clearedItems += 1;
-  drawGauge();
+  const percentage = Math.min((clearedItems / totalItems) * 100, 100);
+
+  console.log("Updated percentage:", percentage);
+
+  const gaugeFill = document.getElementById("gaugeFill");
+  gaugeFill.style.width = `${percentage}%`;
+
+  const gaugePercentage = document.getElementById("gaugePercentage");
+  gaugePercentage.textContent = `${Math.floor(percentage)}% 爽やか`;
 }
 
-// Initial gauge
 drawGauge();
