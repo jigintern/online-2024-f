@@ -184,8 +184,10 @@ body {
   padding: 20px;
   border: 1px solid #888;
   width: 80%; /* 幅 */
+  max-width: 300px;
 }
 
 .image_explain {
   width: 100%;
+  max-width: 375px;
 }
