@@ -91,7 +91,6 @@ function createWhaleSquirt() {
 }
 
 function showEnding() {
-  createCrab("65vh");
   createCrab("75vh");
   createDolphin("10vw", "20vh");
   createDolphin("15vw", "25vh");
@@ -103,8 +102,4 @@ function deleteAnimals() {
   animals.forEach((animal) => {
     animal.remove();
   });
-}
-//deleteAnimals確認用ボタン
-function deleteCheck() {
-  deleteAnimals();
 }
