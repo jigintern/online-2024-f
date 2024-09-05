@@ -16,6 +16,30 @@
   opacity: 1;
 }
 
+.whaleSquirt {
+  width: 300px;
+  height: 300px;
+  position: absolute;
+  top: 20vh;
+  left: 50vw;
+  opacity: 1;
+}
+
+.whale {
+  width: 100%;
+  position: absolute;
+  bottom: 0%;
+  left: 0%;
+  opacity: 1;
+}
+
+.squirt {
+  width: 60%;
+  position: absolute;
+  top: 0%;
+  left: 15%;
+}
+
 @keyframes fuwafuwa {
   0% {
     transform: translate(0, 0) rotate(-10deg);

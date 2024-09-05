@@ -9,12 +9,62 @@
   <body>
     <img src="assets/cleanbeach2.PNG" class="background" />
     <div class="titleBox">
-      <h1 class="title">かいがん清爽</h1>
+      <h1>かいがん清爽</h1>
     </div>
     <div class="selectButtons">
-      <button class="titleButton">遊び方</button>
-      <button class="titleButton">スタート</button>
+      <button class="titleButton" id="howToPlay">遊び方</button>
+      <button class="titleButton" onclick="location.href='index.html'">スタート</button>
     </div>
-    <script></script>
+    <div id="explainModal" class="explainModal">
+      <div class="explain-content">
+        <span class="close">✖︎</span>
+        <h1>遊び方説明<br /></h1>
+        <hr />
+        <h2><br />ゲーム内容</h2>
+        <p>海岸が汚れているのできれいに掃除しよう！<br /></p>
+        <img src="assets/説明画像サンプル.png" alt="散乱しているごみ" class="image_explain" />
+        <p>ゲームを始めると、このように海岸がごみが散乱している状態になっています。</p>
+        <p>プレイヤーが持っている虫取り網と水鉄砲を使ったらなんとかできるかも？<br /><br /></p>
+        <hr />
+        <h2><br />操作方法</h2>
+        <h3>虫取り網と水鉄砲の使い方</h3>
+        <img src="assets/説明画像サンプル.png" alt="散乱しているごみ" class="image_explain" />
+        <p>画面の右上に虫取り網と水鉄砲のボタンがあります。使いたい方のボタンをタップして…</p>
+        <br />
+        <br />
+
+        <img src="assets/説明画像サンプル.png" alt="散乱しているごみ" class="image_explain" />
+        <p>そしてそのままごみをタップ！！！</p>
+        <br />
+        <br />
+
+        <img src="assets/説明画像サンプル.png" alt="散乱しているごみ" class="image_explain" />
+        <p>ゴミを消すことができました。</p>
+        <br />
+        <br />
+
+        <p>ちなみに少し重たそうなゴミには水鉄砲を使うとうまくいくらしいですよ？</p>
+      </div>
+    </div>
+    <script>
+      var modal = document.getElementById("explainModal");
+      var btn = document.getElementById("howToPlay");
+      var span = document.getElementsByClassName("close")[0];
+
+      // ボタンをクリックするとモーダルを開く
+      btn.onclick = function () {
+        modal.style.display = "block";
+      };
+      // <span> (x) をクリックするとモーダルを閉じる
+      span.onclick = function () {
+        modal.style.display = "none";
+      };
+      // モーダルの外側をクリックすると閉じる
+      window.onclick = function (event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      };
+    </script>
   </body>
 </html>
