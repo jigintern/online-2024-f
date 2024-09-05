@@ -8,10 +8,10 @@
 }
 
 .dolphin {
-  animation: kurukuru 1.4s ease-out forwards;
-  width: 100px;
+  animation: kurukuru 3s ease-out infinite forwards;
+  width: 150px;
   position: absolute;
-  top: 30vh;
+  top: 20vh;
   left: 10vw;
   opacity: 1;
 }
@@ -27,6 +27,7 @@
     transform: translate(0, 0) rotate(10deg);
   }
 }
+
 @keyframes moveRight {
   0% {
     left: -25vw;
@@ -41,11 +42,18 @@
     transform: rotateY(0) translateY(40px);
     opacity: 0;
   }
-  80% {
+  40% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+    transform: rotateY(360deg) translate(0, 0);
+  }
+  60% {
     opacity: 1;
   }
   100% {
-    opacity: 1;
-    transform: rotateY(360deg) translateY(0);
+    transform: rotate(0) translateY(40px);
+    opacity: 0;
   }
 }
