@@ -305,16 +305,8 @@ function drawGauge() {
 
   const width = canvas.width;
   const height = canvas.height;
+
   ctx.clearRect(0, 0, width, height);
-
-  ctx.fillStyle = "#d3d3d3";
-  ctx.fillRect(0, 0, width, height);
-
-  // Initial text context
-  ctx.fillStyle = "#000";
-  ctx.font = "20px Arial";
-  ctx.textAlign = "center";
-  ctx.fillText(`0% 爽やか`, width / 2, height / 1.5);
 }
 
 drawGauge();

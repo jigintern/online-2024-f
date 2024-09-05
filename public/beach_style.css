@@ -11,10 +11,12 @@ body {
 
 .beach {
   position: absolute;
-  top: 0;
+  /* top: 0; */
+  top: 70px;
   left: 0;
   width: 100svw;
-  height: 100svh;
+  /* height: 100svh; */
+  height: calc(100vh - 70px);
 }
 
 .beach img {
