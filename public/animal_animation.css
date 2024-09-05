@@ -17,15 +17,16 @@
 }
 
 .whaleSquirt {
-  width: 300px;
-  height: 300px;
+  width: 30vw;
+  height: 25vw;
   position: absolute;
-  top: 20vh;
+  top: 30vh;
   left: 50vw;
   opacity: 1;
 }
 
 .whale {
+  animation: fadeup 2s ease-out forwards;
   width: 100%;
   position: absolute;
   bottom: 0%;
@@ -34,10 +35,12 @@
 }
 
 .squirt {
+  animation: fadeup 2s ease-in-out 3s infinite alternate forwards;
   width: 60%;
   position: absolute;
   top: 0%;
   left: 15%;
+  opacity: 0;
 }
 
 @keyframes fuwafuwa {
@@ -79,5 +82,16 @@
   100% {
     transform: rotate(0) translateY(40px);
     opacity: 0;
+  }
+}
+
+@keyframes fadeup {
+  0% {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(0, 0);
+    opacity: 1;
   }
 }
