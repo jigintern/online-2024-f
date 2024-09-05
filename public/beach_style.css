@@ -67,7 +67,7 @@ body {
   width: 100vw;
   height: 100vh;
   pointer-events: none;
-  z-index: 20;
+  z-index: 9;
 }
 
 .particletext {
@@ -158,6 +158,14 @@ body {
 .insectNet-active,
 .waterGun-active {
   border: 3px solid rgb(0, 0, 0);
+}
+
+.gunhead {
+  width: 60px;
+  position: absolute;
+  transform-origin: center;
+  z-index: 10;
+  display: none;
 }
 
 .background {
