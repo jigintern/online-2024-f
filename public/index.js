@@ -323,4 +323,7 @@ function updateSawayakaGauge() {
 
   const gaugePercentage = document.getElementById("gaugePercentage");
   gaugePercentage.textContent = `${Math.floor(percentage)}% 爽やか`;
+  if (percentage === 100) {
+    showEnding();
+  }
 }
