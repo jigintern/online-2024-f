@@ -91,6 +91,7 @@ function createWhaleSquirt() {
 }
 
 function showEnding() {
+  createCrab("65vh");
   createCrab("75vh");
   createDolphin("10vw", "20vh");
   createDolphin("15vw", "25vh");
