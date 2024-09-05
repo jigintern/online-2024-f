@@ -298,27 +298,23 @@ const ctx = canvas.getContext("2d");
 const totalItems = m + n; // Total number of items(gabage + driftwood)
 let clearedItems = 0;
 
-// Draw gauge
+// Initial gauge
 function drawGauge() {
-  const percentage = Math.min((clearedItems / totalItems) * 100, 100);
+  const canvas = document.getElementById("gaugeCanvas");
+  const ctx = canvas.getContext("2d");
+
   const width = canvas.width;
   const height = canvas.height;
-
   ctx.clearRect(0, 0, width, height);
 
-  ctx.fillStyle = "#d3d3d3"; // Grey
+  ctx.fillStyle = "#d3d3d3";
   ctx.fillRect(0, 0, width, height);
 
-  const gradient = ctx.createLinearGradient(0, 0, width, 0);
-  gradient.addColorStop(0, "#00bfff");
-  gradient.addColorStop(1, "#7fffd4");
-  ctx.fillStyle = gradient;
-  ctx.fillRect(0, 0, (percentage / 100) * width, height);
-
+  // Initial text context
   ctx.fillStyle = "#000";
   ctx.font = "20px Arial";
   ctx.textAlign = "center";
-  ctx.fillText(`${Math.floor(percentage)}% 爽やか`, width / 2, height / 1.5);
+  ctx.fillText(`0% 爽やか`, width / 2, height / 1.5);
 }
 
 function updateSawayakaGauge() {
