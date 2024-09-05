@@ -7,6 +7,15 @@
   left: 0vw;
 }
 
+.dolphin {
+  animation: kurukuru 1.4s ease-out forwards;
+  width: 100px;
+  position: absolute;
+  top: 30vh;
+  left: 10vw;
+  opacity: 1;
+}
+
 @keyframes fuwafuwa {
   0% {
     transform: translate(0, 0) rotate(-10deg);
@@ -24,5 +33,19 @@
   }
   100% {
     left: 100vw;
+  }
+}
+
+@keyframes kurukuru {
+  0% {
+    transform: rotateY(0) translateY(40px);
+    opacity: 0;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    transform: rotateY(360deg) translateY(0);
   }
 }
