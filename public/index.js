@@ -1,41 +1,8 @@
-function toggleAudio() {
-  const audio = document.getElementById("audio");
-  if (audio.paused) {
-    audio.play();
-  } else {
-    audio.pause();
-  }
-}
-
-globalThis.onload = function () {
-  const audio = document.getElementById("audio");
-  audio.volume = 0;
-};
-
-async function volumeUp() {
-  const audio = document.getElementById("audio");
-  const image0 = document.querySelector(".dirtybeach");
-  const image1 = document.querySelector(".cleanbeach");
-  if (audio.paused) {
-    await audio.play();
-  }
-  if (audio.volume < 1) {
-    audio.volume += 0.1;
-    image0.style.opacity = 1 - audio.volume;
-    image1.style.opacity = audio.volume;
-  }
-}
-
-function volumeDown() {
-  const audio = document.getElementById("audio");
-  const image0 = document.querySelector(".dirtybeach");
-  const image1 = document.querySelector(".cleanbeach");
-  if (audio.volume > 0) {
-    audio.volume -= 0.1;
-    image0.style.opacity = 1 - audio.volume;
-    image1.style.opacity = audio.volume;
-  }
-}
+const maxItems = 24;
+const generateTime = 3; // Seconds
+let clearedItems = 0;
+let totalItems = 24;
+let currentVolume = 0;
 
 //States for insectNet and waterGun
 let insectNetActive = false;
@@ -69,69 +36,144 @@ function updateToolIcons() {
   }
 }
 
-//流木以外のゴミの配列
+// //流木以外のゴミの配列
+// const gabages = [
+//   "assets/PlasticBottle_blue.png",
+//   "assets/PlasticBottle_green.png",
+//   "assets/PlasticBottle_white.png",
+//   "assets/EmptyCan.png",
+// ];
+// //画面サイズ取得
+// const windW = globalThis.innerWidth;
+// const windH = globalThis.innerHeight;
+
+// //ゴミをn個ランダム表示
+// const n = 7;
+// for (let i = 0; i < n; i++) {
+//   //画像をランダムで選ぶ
+//   const gabageSrc = gabages[Math.floor(Math.random() * gabages.length)];
+//   const gabageElement = document.createElement("img");
+//   gabageElement.src = gabageSrc;
+//   gabageElement.classList.add("gabage");
+//   //座標をランダムに生成
+//   //画面の大きさに合わせて縦6~9割あたりに配置
+//   const randomX = Math.floor(windW - 40 - Math.random() * (windW - 40));
+//   const randomY = Math.floor(0.6 * windH + Math.random() * (windH * 0.3));
+//   //表示
+//   gabageElement.style.position = "absolute";
+//   gabageElement.style.left = `${randomX}px`;
+//   gabageElement.style.top = `${randomY}px`;
+//   // 画像をクリックした際に削除するイベントリスナーを追加
+//   // クリック時にinsectNetAction状態を確認して削除
+//   gabageElement.addEventListener("click", function () {
+//     if (insectNetActive) {
+//       gabage_click(event);
+//       this.remove();
+//       volumeUp();
+//     }
+//   });
+//   document.body.appendChild(gabageElement);
+// }
+
+// //流木の表示
+// const driftwoodSrc = "assets/driftwood.png";
+// // Driftwoodをm個ランダム表示
+// const m = 3;
+// for (let i = 0; i < m; i++) {
+//   const driftwoodElement = document.createElement("img");
+//   driftwoodElement.src = driftwoodSrc;
+//   driftwoodElement.classList.add("wood");
+//   // 座標をランダムに生成
+//   //画面の大きさに合わせて縦6~9.5割あたりに配置
+//   const randomX = Math.floor(windW - 95 - Math.random() * (windW - 95));
+//   const randomY = Math.floor(0.6 * windH + Math.random() * (windH * 0.35));
+//   // 表示
+//   driftwoodElement.style.position = "absolute";
+//   driftwoodElement.style.left = `${randomX}px`;
+//   driftwoodElement.style.top = `${randomY}px`;
+//   // 画像をクリックした際に削除するイベントリスナーを追加
+//   // クリック時にwaterGunActive状態を確認して削除
+//   driftwoodElement.addEventListener("click", function () {
+//     if (waterGunActive) {
+//       driftwood_click(event);
+//     }
+//   });
+//   document.body.appendChild(driftwoodElement);
+// }
+
+// 流木以外のゴミの配列
 const gabages = [
   "assets/PlasticBottle_blue.png",
   "assets/PlasticBottle_green.png",
   "assets/PlasticBottle_white.png",
   "assets/EmptyCan.png",
 ];
-//画面サイズ取得
+
+// 画面サイズ取得
 const windW = globalThis.innerWidth;
 const windH = globalThis.innerHeight;
 
-//ゴミをn個ランダム表示
-const n = 7;
-for (let i = 0; i < n; i++) {
-  //画像をランダムで選ぶ
-  const gabageSrc = gabages[Math.floor(Math.random() * gabages.length)];
-  const gabageElement = document.createElement("img");
-  gabageElement.src = gabageSrc;
-  gabageElement.classList.add("gabage");
-  //座標をランダムに生成
-  //画面の大きさに合わせて縦6~9割あたりに配置
+// ランダム位置生成用の関数
+function generateRandomPosition(width, height, verticalRange = [0.6, 0.9]) {
+  // 座標をランダムに生成
   const randomX = Math.floor(windW - 40 - Math.random() * (windW - 40));
   const randomY = Math.floor(0.6 * windH + Math.random() * (windH * 0.3));
-  //表示
-  gabageElement.style.position = "absolute";
-  gabageElement.style.left = `${randomX}px`;
-  gabageElement.style.top = `${randomY}px`;
-  // 画像をクリックした際に削除するイベントリスナーを追加
-  // クリック時にinsectNetAction状態を確認して削除
-  gabageElement.addEventListener("click", function () {
-    if (insectNetActive) {
-      gabage_click(event);
-      this.remove();
-      volumeUp();
-    }
-  });
-  document.body.appendChild(gabageElement);
+  return { randomX, randomY };
 }
 
-//流木の表示
-const driftwoodSrc = "assets/driftwood.png";
-// Driftwoodをm個ランダム表示
-const m = 3;
-for (let i = 0; i < m; i++) {
-  const driftwoodElement = document.createElement("img");
-  driftwoodElement.src = driftwoodSrc;
-  driftwoodElement.classList.add("wood");
+// ゴミや流木を作成する関数
+function createItem(src, className, clickHandler) {
+  const element = document.createElement("img");
+  element.src = src;
+  element.classList.add(className);
+
   // 座標をランダムに生成
-  //画面の大きさに合わせて縦6~9.5割あたりに配置
-  const randomX = Math.floor(windW - 95 - Math.random() * (windW - 95));
-  const randomY = Math.floor(0.6 * windH + Math.random() * (windH * 0.35));
-  // 表示
-  driftwoodElement.style.position = "absolute";
-  driftwoodElement.style.left = `${randomX}px`;
-  driftwoodElement.style.top = `${randomY}px`;
-  // 画像をクリックした際に削除するイベントリスナーを追加
-  // クリック時にwaterGunActive状態を確認して削除
-  driftwoodElement.addEventListener("click", function () {
-    if (waterGunActive) {
-      driftwood_click(event);
-    }
+  const { randomX, randomY } = generateRandomPosition(windW, windH);
+  element.style.position = "absolute";
+  element.style.left = `${randomX}px`;
+  element.style.top = `${randomY}px`;
+
+  // クリック時に削除するイベントリスナーを追加
+  element.addEventListener("click", function (event) {
+    clickHandler(event, this); // この要素を渡す
   });
-  document.body.appendChild(driftwoodElement);
+
+  document.body.appendChild(element);
+}
+
+// ゴミクリック時の処理
+function gabage_clickHandler(event, element) {
+  if (insectNetActive) {
+    // クリック時にゴミ削除処理
+    gabage_click(event); // 既存の処理
+    // element.remove();
+  }
+}
+
+// 流木クリック時の処理
+function driftwood_clickHandler(event, element) {
+  if (waterGunActive) {
+    // クリック時に流木削除処理
+    driftwood_click(event); // 既存の処理
+    // element.remove();
+  }
+}
+
+// ゴミをn個ランダム表示
+function generateGarbages(n) {
+  for (let i = 0; i < n; i++) {
+    // 画像をランダムで選ぶ
+    const gabage = gabages[Math.floor(Math.random() * gabages.length)];
+    createItem(gabage, "gabage", gabage_clickHandler);
+  }
+}
+
+// 流木をm個ランダム表示
+function generateDriftwoods(m) {
+  const driftwoodSrc = "assets/driftwood.png"; // 流木の画像ソース
+  for (let i = 0; i < m; i++) {
+    createItem(driftwoodSrc, "wood", driftwood_clickHandler);
+  }
 }
 
 //ゴミクリック時
@@ -151,7 +193,7 @@ function gabage_click(event) {
   }, 100);
   setTimeout(function () {
     InsectNetElement.remove();
-    updateSawayakaGauge(); // Update gauge
+    // updateSawayakaGauge(); // Update gauge
   }, 500);
   showSawayakaEffect(click_x, click_y);
 }
@@ -212,7 +254,7 @@ function driftwood_click(event) {
         event.target.remove(); // Remove driftwood element after the animation ends
         volumeUp(); // Assuming this controls audio volume
         showSawayakaEffect(event.clientX - 30, event.clientY);
-        updateSawayakaGauge(); // Update gauge
+        // updateSawayakaGauge(); // Update gauge
       }, 100);
     }
   }
@@ -293,34 +335,119 @@ function driftwood_click(event) {
   drawWaterStream(); // Start the water stream animation
 }
 
-const canvas = document.getElementById("gaugeCanvas");
-const ctx = canvas.getContext("2d");
-const totalItems = m + n; // Total number of items(gabage + driftwood)
-let clearedItems = 0;
+// function drawGauge() {
+//   const canvas = document.getElementById("gaugeCanvas");
+//   const ctx = canvas.getContext("2d");
 
-// Initial gauge
-function drawGauge() {
-  const canvas = document.getElementById("gaugeCanvas");
-  const ctx = canvas.getContext("2d");
+//   const width = canvas.width;
+//   const height = canvas.height;
 
-  const width = canvas.width;
-  const height = canvas.height;
+//   ctx.clearRect(0, 0, width, height);
 
-  ctx.clearRect(0, 0, width, height);
-}
+//   const percentage = Math.min((clearedItems / totalItems) * 100, 100);
+//   ctx.fillStyle = "#00bfff";
+//   ctx.fillRect(0, 0, (percentage / 100) * width, height);
 
-drawGauge();
+//   ctx.fillStyle = "#000";
+//   ctx.font = "20px Arial";
+//   ctx.textAlign = "center";
+//   ctx.fillText(`${Math.floor(percentage)}% 爽やか`, width / 2, height / 1.5);
+// }
 
-// Update gauge
 function updateSawayakaGauge() {
-  clearedItems += 1;
-  const percentage = Math.min((clearedItems / totalItems) * 100, 100);
-
-  console.log("Updated percentage:", percentage);
-
+  if (totalItems > 0) {
+  }
+  const percentage = Math.min((totalItems / totalItems) * 100, 100);
   const gaugeFill = document.getElementById("gaugeFill");
   gaugeFill.style.width = `${percentage}%`;
 
   const gaugePercentage = document.getElementById("gaugePercentage");
   gaugePercentage.textContent = `${Math.floor(percentage)}% 爽やか`;
 }
+
+function createRandomGarbageOrDriftwood() {
+  const isGarbage = Math.random() > 0.5;
+  if (isGarbage) {
+    generateGarbages(1);
+  } else {
+    generateDriftwoods(1);
+  }
+}
+
+setInterval(function () {
+  if (totalItems < maxItems) {
+    totalItems += 1;
+    createRandomGarbageOrDriftwood();
+    localStorage.setItem("totalItems", totalItems);
+    localStorage.setItem("lastGarbageTime", new Date());
+  }
+}, generateTime);
+
+function updateUI() {
+  const audio = document.getElementById("audio");
+  const image0 = document.querySelector(".dirtybeach");
+  const image1 = document.querySelector(".cleanbeach");
+  const gaugeFill = document.getElementById("gaugeFill");
+  const gaugePercentage = document.getElementById("gaugePercentage");
+
+  audio.volume = currentVolume;
+
+  image0.style.opacity = 1 - currentVolume;
+  image1.style.opacity = currentVolume;
+
+  updateSawayakaGauge();
+}
+
+function saveProgress() {
+  localStorage.setItem("clearedItems", clearedItems);
+  localStorage.setItem("totalItems", totalItems);
+  localStorage.setItem("currentVolume", currentVolume);
+}
+
+function loadProgress() {
+  const savedClearedItems = localStorage.getItem("clearedItems");
+  const savedTotalItems = localStorage.getItem("totalItems");
+  const savedVolume = localStorage.getItem("currentVolume");
+
+  if (savedClearedItems && savedTotalItems && savedVolume) {
+    clearedItems = parseInt(savedClearedItems, 10);
+    totalItems = parseInt(savedTotalItems, 10);
+    currentVolume = parseFloat(savedVolume);
+  }
+
+  updateUI();
+}
+
+function itemsUp() {
+  if (totalItems < maxItems) {
+    totalItems++;
+    volumeDown();
+    saveProgress();
+    updateUI();
+  }
+}
+
+function itemsDown() {
+  if (totalItems > 0) {
+    totalItems--;
+    volumeUp();
+    saveProgress();
+    updateUI();
+  }
+}
+
+function volumeUp() {
+  if (currentVolume < 1) {
+    currentVolume = Math.min(currentVolume + 1 / totalItems, 1);
+  }
+}
+
+function volumeDown() {
+  if (currentVolume > 0) {
+    currentVolume = Math.max(currentVolume - 1 / totalItems, 0);
+  }
+}
+
+globalThis.onload = function () {
+  loadProgress();
+};
