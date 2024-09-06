@@ -9,8 +9,11 @@ Deno.serve(async (req) => {
   }
 
   if (req.method === "GET" && pathname === "/") {
-    return new Response(await Deno.readFile("public/title.html"), {
-      headers: { "Content-Type": "text/html" },
+    return new Response("Redirecting...", {
+      status: 302,
+      headers: {
+        Location: "/title.html",
+      },
     });
   }
 
