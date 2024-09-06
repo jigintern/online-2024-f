@@ -333,10 +333,20 @@ function updateSawayakaGauge() {
   if (percentage === 100) {
     showEnding();
   } else if (percentage >= 80) {
+    const whale = querySelector(".whaleSquirt");
+    while(whale){
+      whale.remove();
+      whale = querySelector(".whaleSquirt");
+    }
     if(!document.querySelector(".dolphin")){
       createDolphin("10vw", "20vh");
     }
   }else if (percentage >= 50) {
+    const dolphin = querySelector(".dolphin");
+    while(dolphin){
+      dolphin.remove();
+      dolphin = querySelector(".dolphine");
+    }
     if(!document.querySelector(".crab")) {
       createCrab("65vh");
     }
