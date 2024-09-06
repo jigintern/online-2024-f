@@ -31,6 +31,12 @@ body {
 .dirtybeach {
   opacity: 1; /* 透明度を少し下げることで下の画像が見える */
 }
+
+/*midbeach*/
+.midbeach {
+  opacity: 0;
+}
+
 /*cleanbeach1*/
 .cleanbeach {
   opacity: 0;

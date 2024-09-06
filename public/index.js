@@ -15,25 +15,41 @@ globalThis.onload = function () {
 async function volumeUp() {
   const audio = document.getElementById("audio");
   const image0 = document.querySelector(".dirtybeach");
-  const image1 = document.querySelector(".cleanbeach");
+  const image1 = document.querySelector(".midbeach");
+  const image2 = document.querySelector(".cleanbeach");
   if (audio.paused) {
     await audio.play();
   }
   if (audio.volume < 1) {
     audio.volume += 0.1;
-    image0.style.opacity = 1 - audio.volume;
-    image1.style.opacity = audio.volume;
+    if(audio.volume <= 0.5){
+      image0.style.opacity = 1 - audio.volume*2;
+      image1.style.opacity = audio.volume*2;
+      image2.style.opacity = 0;
+    }else{
+      image0.style.opacity = 0;
+      image1.style.opacity = 2 - audio.volume*2;
+      image2.style.opacity = audio.volume*2 - 1;
+    }
   }
 }
 
 function volumeDown() {
   const audio = document.getElementById("audio");
   const image0 = document.querySelector(".dirtybeach");
-  const image1 = document.querySelector(".cleanbeach");
+  const image1 = document.querySelector(".midbeach");
+  const image2 = document.querySelector(".cleanbeach");
   if (audio.volume > 0) {
     audio.volume -= 0.1;
-    image0.style.opacity = 1 - audio.volume;
-    image1.style.opacity = audio.volume;
+    if(audio.volume <= 0.5){
+      image0.style.opacity = 1 - audio.volume*2;
+      image1.style.opacity = audio.volume*2;
+      image2.style.opacity = 0;
+    }else{
+      image0.style.opacity = 0;
+      image1.style.opacity = 2 - audio.volume*2;
+      image2.style.opacity = audio.volume*2 - 1;
+    }
   }
 }
 
