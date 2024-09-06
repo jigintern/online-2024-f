@@ -348,7 +348,26 @@ function updateSawayakaGauge() {
   gaugePercentage.textContent = `${Math.floor(percentage)}% 爽やか`;
   if (percentage === 100) {
     showEnding();
-  } else {
+  } else if (percentage >= 80) {
+    const whale =document.querySelector(".whaleSquirt");
+    while(whale){
+      whale.remove();
+      whale = document.querySelector(".whaleSquirt");
+    }
+    if(!document.querySelector(".dolphin")){
+      createDolphin("10vw", "20vh");
+    }
+  }else if (percentage >= 50) {
+    const dolphin = document.querySelector(".dolphin");
+    while(dolphin){
+      dolphin.remove();
+      dolphin = document.querySelector(".dolphine");
+    }
+    if(!document.querySelector(".crab")) {
+      createCrab("65vh");
+    }
+  }else {
     deleteAnimals();
   }
+  
 }
