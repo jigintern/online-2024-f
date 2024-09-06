@@ -1,19 +1,55 @@
+.animals {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  position: fixed;
+}
+
 .crab {
   animation: fuwafuwa 1s ease-in-out infinite alternate, moveRight 10s linear infinite;
   transition: 0.5s ease-in-out;
   width: 100px;
   position: absolute;
-  top: 50vh;
+  top: 70vh;
   left: 0vw;
 }
 
 .dolphin {
   animation: kurukuru 3s ease-out infinite forwards;
-  width: 150px;
+  width: 25vw;
+  max-width: 10vh;
   position: absolute;
-  top: 20vh;
+  top: 35vh;
   left: 10vw;
   opacity: 1;
+}
+
+.whaleSquirt {
+  width: 40vw;
+  height: 30vw;
+  max-width: 20vh;
+  max-height: 15vh;
+  position: absolute;
+  top: 25vh;
+  left: 60vw;
+}
+
+.whale {
+  animation: fadeup 2s ease-out forwards;
+  width: 100%;
+  position: absolute;
+  bottom: 0%;
+  left: 0%;
+  opacity: 1;
+}
+
+.squirt {
+  animation: fadeup 2s ease-in-out 3s infinite alternate forwards;
+  width: 60%;
+  position: absolute;
+  top: 0%;
+  left: 15%;
+  opacity: 0;
 }
 
 @keyframes fuwafuwa {
@@ -55,5 +91,16 @@
   100% {
     transform: rotate(0) translateY(40px);
     opacity: 0;
+  }
+}
+
+@keyframes fadeup {
+  0% {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(0, 0);
+    opacity: 1;
   }
 }

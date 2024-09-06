@@ -5,6 +5,7 @@
     <meta charset="utf-8" />
     <link rel="stylesheet" href="beach_style.css" />
     <link rel="stylesheet" href="animal_animation.css" />
+    <link rel="icon" href="assets/dolphin_img_ICON.PNG" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>かいがん清爽</title>
   </head>
@@ -14,15 +15,27 @@
       <img src="assets/dirtybeach.PNG" class="dirtybeach" />
       <img src="assets/cleanbeach1.PNG" class="cleanbeach" />
     </div>
-    <!--イルカ画像-->
-    <img src="assets/dolphin_img.PNG" class="dolphin" />
-    <audio id="sawayakasound" type="audio/mp3" autoplay src="assets/キラッ2.mp3"></audio>
-    <div class="tools">
-      <img src="assets/InsectNet_icon.png" class="insect-net" onclick="toggleInsectNet()" />
-      <img src="assets/waterGun.png" class="water-gun" onclick="toggleWaterGun()" />
+    <div class="top-bar">
+      <!-- 爽やかゲージ -->
+      <div id="sawayakaGauge">
+        <div id="gaugeFill"></div>
+        <div id="gaugePercentage">0% 爽やか</div>
+      </div>
+      <div class="tools">
+        <!-- 虫取り網 -->
+        <img src="assets/InsectNet_icon.png" class="insect-net" onclick="toggleInsectNet()" />
+        <!-- 水鉄砲 -->
+        <img src="assets/waterGun.png" class="water-gun" onclick="toggleWaterGun()" />
+      </div>
     </div>
+    <div class="gauge-container">
+      <canvas id="gaugeCanvas" width="400" height="50"></canvas>
+    </div>
+    <div class="animals"></div>
+    <audio id="sawayakasound" type="audio/mp3" src="assets/キラッ2.mp3"></audio>
     <!-- 水鉄砲アニメーション -->
     <canvas id="waterCanvas"></canvas>
+    <img id="gunhead" src="assets/gunhead.png" class="gunhead" />
     <div class="audio">
       <audio id="audio" controls loop style="display: none">
         <source src="assets/wave_audio.mp3" type="audio/mp3" />
