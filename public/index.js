@@ -163,6 +163,7 @@ function driftwood_click(event) {
 
   const canvas = document.getElementById("waterCanvas");
   const ctx = canvas.getContext("2d");
+  const gunhead = document.getElementById("gunhead");
 
   const targetX = event.clientX;
   const targetY = event.clientY;
@@ -213,6 +214,7 @@ function driftwood_click(event) {
         volumeUp(); // Assuming this controls audio volume
         showSawayakaEffect(event.clientX - 30, event.clientY);
         updateSawayakaGauge(); // Update gauge
+        gunhead.style.display = "none";
       }, 100);
     }
   }
@@ -291,6 +293,11 @@ function driftwood_click(event) {
   }
 
   drawWaterStream(); // Start the water stream animation
+  const angle = Math.atan2(targetY - startY, targetX - startX) + Math.PI / 2;
+  gunhead.style.display = "block";
+  gunhead.style.left = `${startX - 30}px`; // gunheadの水平位置を設定
+  gunhead.style.top = `${startY - 30}px`; // gunheadの垂直位置を設定
+  gunhead.style.transform = `rotate(${angle}rad)`;
 }
 
 const canvas = document.getElementById("gaugeCanvas");
