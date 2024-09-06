@@ -104,8 +104,11 @@ for (let i = 0; i < n; i++) {
   // クリック時にInsectNetAction状態を確認して削除
   gabageElement.addEventListener("click", function () {
     if (insectNetActive) {
-      gabage_click(event);
-      this.remove();
+      gabage_click(gabageElement);
+      setTimeout(function () {
+        gabageElement.remove();
+      }, 500);
+      //this.remove();
       volumeUp();
     }
   });
@@ -140,9 +143,17 @@ for (let i = 0; i < m; i++) {
   document.body.appendChild(driftwoodElement);
 }
 
+<<<<<<< Updated upstream
 function gabage_click(event) {
   const click_x = event.pageX - 30;
   const click_y = event.pageY - 30;
+=======
+//ゴミクリック時
+function gabage_click(gabageElement) {
+  gabage = gabageElement.getBoundingClientRect();
+  const click_x = gabage.x - 15;
+  const click_y = gabage.y - 30;
+>>>>>>> Stashed changes
   const InsectNetElement = document.createElement("img");
   InsectNetElement.classList.add("InsectNet");
   InsectNetElement.src = "assets/InsectNet_catching.png";
@@ -150,11 +161,206 @@ function gabage_click(event) {
   InsectNetElement.style.left = `${click_x}px`;
   InsectNetElement.style.top = `${click_y}px`;
   InsectNetElement.style.width = "120px";
+  InsectNetElement.style.transformOrigin = "85% 60%";
   document.body.appendChild(InsectNetElement);
   setTimeout(function () {
-    InsectNetElement.style.transform = "rotate(-90deg)";
-  }, 100);
+    InsectNetElement.style.transitionDuration = "0.4s";
+    InsectNetElement.style.transform = "rotate(40deg)";
+  }, 10);
+  setTimeout(function () {
+    InsectNetElement.style.transitionDuration = "0.1s";
+    InsectNetElement.style.transform = "rotate(-30deg)";
+  }, 400);
+  setTimeout(function () {
+    showSawayakaEffect(click_x, click_y);
+  }, 600);
   setTimeout(function () {
     InsectNetElement.remove();
+<<<<<<< Updated upstream
   }, 500);
+=======
+    updateSawayakaGauge(); // Update gauge
+  }, 1000);
+}
+
+function driftwood_click(event) {
+  if (!waterGunActive) {
+    return;
+  }
+
+  const canvas = document.getElementById("waterCanvas");
+  const ctx = canvas.getContext("2d");
+  const gunhead = document.getElementById("gunhead");
+
+  const targetX = event.clientX;
+  const targetY = event.clientY;
+
+  canvas.width = globalThis.innerWidth;
+  canvas.height = globalThis.innerHeight;
+
+  const startX = canvas.width / 2;
+  const startY = canvas.height;
+  const duration = 500; // Animation Duration
+  const startTime = Date.now();
+
+  function drawWaterStream() {
+    const elapsedTime = Date.now() - startTime;
+    const progress = Math.min(elapsedTime / duration, 1);
+
+    // Shaking effect
+    const jitterX = (Math.random() - 0.5) * 10;
+    const jitterY = (Math.random() - 0.5) * 10;
+
+    const currentX = startX + (targetX - startX) * progress + jitterX;
+    const currentY = startY + (targetY - startY) * progress + jitterY;
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Gradient for the water stream
+    const gradient = ctx.createLinearGradient(startX, startY, currentX, currentY);
+    gradient.addColorStop(0, "rgba(0, 150, 255, 1)"); // Deep Blue
+    gradient.addColorStop(0.5, "rgba(0, 200, 255, 0.8)"); // Mid Blue
+    gradient.addColorStop(1, "rgba(0, 255, 255, 0.6)"); // Light Blue
+
+    ctx.beginPath();
+    ctx.moveTo(startX, startY);
+    ctx.lineTo(currentX, currentY);
+    ctx.strokeStyle = gradient;
+    ctx.lineWidth = 8;
+    ctx.stroke();
+
+    // Draw speed lines along the water stream
+    drawSpeedLines(ctx, currentX, currentY, progress);
+
+    if (progress < 1) {
+      requestAnimationFrame(drawWaterStream);
+    } else {
+      setTimeout(() => {
+        drawDynamicWaterSplash(ctx, targetX, targetY); // Water splash effect
+        event.target.remove(); // Remove driftwood element after the animation ends
+        volumeUp(); // Assuming this controls audio volume
+        showSawayakaEffect(event.clientX - 30, event.clientY);
+        updateSawayakaGauge(); // Update gauge
+        gunhead.style.display = "none";
+      }, 100);
+    }
+  }
+
+  function drawDynamicWaterSplash(ctx, x, y) {
+    const splashCount = 15;
+    const maxSplashSize = 8;
+    const splashRange = 60;
+    const splashDuration = 500;
+    const startTime = Date.now();
+
+    function animateSplash() {
+      const elapsedTime = Date.now() - startTime;
+      const progress = Math.min(elapsedTime / splashDuration, 1);
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      for (let i = 0; i < splashCount; i++) {
+        const splashX = x + (Math.random() - 0.5) * splashRange * progress;
+        const splashY = y + (Math.random() - 0.5) * splashRange * progress;
+        const splashSize = (Math.random() * maxSplashSize + 4) * (1 - progress);
+        const alpha = 1 - progress;
+
+        // Gradient for the splash droplet
+        const gradient = ctx.createRadialGradient(
+          splashX,
+          splashY,
+          0,
+          splashX,
+          splashY,
+          splashSize
+        );
+        gradient.addColorStop(0, `rgba(0, 150, 255, ${alpha})`); // Deep Blue
+        gradient.addColorStop(1, `rgba(0, 255, 255, ${alpha * 0.5})`); // Light Blue
+
+        // Draw droplet
+        ctx.beginPath();
+        ctx.arc(splashX, splashY, splashSize, 0, Math.PI * 2);
+        // ctx.fillStyle = `rgba(0, 150, 255, ${alpha})`;
+        ctx.fillStyle = gradient;
+        ctx.fill();
+      }
+
+      if (progress < 1) {
+        requestAnimationFrame(animateSplash);
+      }
+    }
+
+    animateSplash();
+  }
+
+  function drawSpeedLines(ctx, x, y, progress) {
+    const speedLineCount = 15;
+    const maxSpeedLineLength = 100;
+    const speedLineWidth = 4;
+
+    for (let i = 0; i < speedLineCount; i++) {
+      const offsetX = (Math.random() - 0.5) * maxSpeedLineLength;
+      const offsetY = (Math.random() - 0.5) * maxSpeedLineLength;
+
+      // Gradient for the speed line
+      const lineStartX = x - offsetX * progress;
+      const lineStartY = y - offsetY * progress;
+      const gradient = ctx.createLinearGradient(lineStartX, lineStartY, x, y);
+      gradient.addColorStop(0, "rgba(0, 150, 255, 1)"); // Deep Blue
+      gradient.addColorStop(1, "rgba(0, 255, 255, 0.5)"); // Light Blue
+
+      // Draw speed line
+      ctx.beginPath();
+      ctx.moveTo(x, y);
+      ctx.lineTo(lineStartX, lineStartY);
+      ctx.strokeStyle = gradient;
+      ctx.lineWidth = speedLineWidth;
+      ctx.stroke();
+    }
+  }
+
+  drawWaterStream(); // Start the water stream animation
+  const angle = Math.atan2(targetY - startY, targetX - startX) + Math.PI / 2;
+  gunhead.style.display = "block";
+  gunhead.style.left = `${startX - 30}px`; // gunheadの水平位置を設定
+  gunhead.style.top = `${startY - 30}px`; // gunheadの垂直位置を設定
+  gunhead.style.transform = `rotate(${angle}rad)`;
+}
+
+const canvas = document.getElementById("gaugeCanvas");
+const ctx = canvas.getContext("2d");
+const totalItems = m + n; // Total number of items(gabage + driftwood)
+let clearedItems = 0;
+
+// Initial gauge
+function drawGauge() {
+  const canvas = document.getElementById("gaugeCanvas");
+  const ctx = canvas.getContext("2d");
+
+  const width = canvas.width;
+  const height = canvas.height;
+
+  ctx.clearRect(0, 0, width, height);
+}
+
+drawGauge();
+
+// Update gauge
+function updateSawayakaGauge() {
+  clearedItems += 1;
+  const percentage = Math.min((clearedItems / totalItems) * 100, 100);
+
+  console.log("Updated percentage:", percentage);
+
+  const gaugeFill = document.getElementById("gaugeFill");
+  gaugeFill.style.width = `${percentage}%`;
+
+  const gaugePercentage = document.getElementById("gaugePercentage");
+  gaugePercentage.textContent = `${Math.floor(percentage)}% 爽やか`;
+  if (percentage === 100) {
+    showEnding();
+  } else {
+    deleteAnimals();
+  }
+>>>>>>> Stashed changes
 }
